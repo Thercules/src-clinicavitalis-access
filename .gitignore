@@ -2,9 +2,6 @@
 src/bff/node_modules/
 src/client/node_modules/
 
-# Ignorar dependências globais do projeto
-node_modules/
-
 # Ignorar arquivos de build e cache
 dist/
 build/
