@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test:unit": "vitest",
-    "test:e2e": "cypress open"
+    "test:e2e": "cypress open",
+    "dev": "npm --prefix src/client run dev",
+    "bff": "node src/bff/index.js",
+    "start": "npm run bff & npm run dev"
   },
   "repository": {
     "type": "git",
