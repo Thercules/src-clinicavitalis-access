@@ -1,0 +1,21 @@
+{
+  "name": "src-clinicavitalis-access",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:unit": "vitest",
+    "test:e2e": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thercules/src-clinicavitalis-access.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thercules/src-clinicavitalis-access/issues"
+  },
+  "homepage": "https://github.com/Thercules/src-clinicavitalis-access#readme"
+}

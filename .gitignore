@@ -1,0 +1,23 @@
+# Ignorar node_modules do BFF e Client
+src/bff/node_modules/
+src/client/node_modules/
+
+# Ignorar dependências globais do projeto
+node_modules/
+
+# Ignorar arquivos de build e cache
+dist/
+build/
+.cache/
+.vite/
+.out/
+coverage/
+
+# Ignorar configurações de ambiente
+.env
+.env.local
+.env.*.local
+
+# Ignorar arquivos do sistema operacional
+.DS_Store
+Thumbs.db
