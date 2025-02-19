@@ -30,6 +30,7 @@ export default {
   gap: 20px;
   padding: 40px;
   background: linear-gradient(to right, #FFF, #D0DFF2);
+  margin-top: calc(60px);
 }
 
 .text-left h1 {
