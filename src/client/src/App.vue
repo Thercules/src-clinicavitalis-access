@@ -1,15 +1,18 @@
 <script>
 import HomeNavbar from "./components/HomeNavbar.vue";
+import HomeSubTextComponent from "./components/HomeSubTextComponent.vue";
 
 export default {
   components: {
     HomeNavbar,
+    HomeSubTextComponent,
   },
 };
 </script>
 
 <template>
   <HomeNavbar />
+  <HomeSubTextComponent />
   <div class="content">
     <h1>Teste</h1>
     <p>Conteúdo abaixo da navbar...</p>
