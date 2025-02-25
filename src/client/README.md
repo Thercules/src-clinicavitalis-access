@@ -2,56 +2,94 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
-## Recommended IDE Setup
+## Usage Instructions
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+### Moving the Project to `src/client`
 
-## Customize configuration
+1. Make sure you are in the project's root directory:  
+    ```bash
+    cd projects/src-clinicavitalis-access
+    ```
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+2. Move the project to the correct path:  
+    ```bash
+    mv . ../src/client
+    ```
 
-## Project Setup
+3. Access the new directory:  
+    ```bash
+    cd ../src/client
+    ```
 
-```sh
-npm install
-```
+---
 
-### Compile and Hot-Reload for Development
+### Checking if Port 5173 is Available
 
-```sh
-npm run dev
-```
+- Before starting the project, make sure that port `5173` is free.  
+- On Windows, use the following command:  
+    ```powershell
+    netstat -aon | findstr 5173
+    ```
+- On Linux or macOS, use:  
+    ```bash
+    lsof -i :5173
+    ```
+- If a process is using this port, kill it with:  
+    ```bash
+    kill -9 <PID>
+    ```
 
-### Compile and Minify for Production
+---
 
-```sh
-npm run build
-```
+### Starting Cypress for E2E Tests
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+1. Install Cypress dependencies:  
+    ```bash
+    npm install cypress --save-dev
+    ```
 
-```sh
-npm run test:unit
-```
+2. Open Cypress:  
+    ```bash
+    npx cypress open
+    ```
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+3. To run E2E tests directly in the terminal:  
+    ```bash
+    npx cypress run
+    ```
 
-```sh
-npm run test:e2e:dev
-```
+---
 
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
+### Running Unit Tests
 
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
+- This project uses **Vitest** for unit tests. To run them, use:  
+    ```bash
+    npx vitest run
+    ```
 
-```sh
-npm run build
-npm run test:e2e
-```
+- To run tests in watch mode (monitoring file changes in real-time):  
+    ```bash
+    npm run lint
+    ```
 
-### Lint with [ESLint](https://eslint.org/)
+---
 
-```sh
-npm run lint
-```
+## Notes
+
+- Make sure all dependencies are installed using:  
+    ```bash
+    npm install
+    ```
+
+- If you encounter caching issues, use:  
+    ```bash
+    npm cache clean --force
+    ```
+
+---
+
+## Contact
+
+For questions or suggestions, reach out at:  
+- **Email**: contato@vitalisclinica.com  
+- **Website**: [www.vitalisclinica.com](https://www.vitalisclinica.com)  
