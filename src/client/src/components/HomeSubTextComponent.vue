@@ -8,8 +8,8 @@ export default {
   <section class="container">
     <div class="text-left">
       <h1>
-        Epicenter of Health <br />
-        <span class="highlight">Your Wellness Haven</span>
+        Epicentro da Saúde <br />
+        <span class="highlight">Conheça a Vitalis</span>
       </h1>
     </div>
     <div class="text-right">
@@ -24,28 +24,37 @@ export default {
 
 <style scoped>
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 20px;
-  padding: 40px;
+  text-align: center;
+  gap: 40px;
+  padding: 60px;
   background: linear-gradient(to right, #FFF, #D0DFF2);
-  margin-top: calc(60px);
+  margin-top: 60px;
+}
+
+.text-left {
+  flex: 1;
 }
 
 .text-left h1 {
-  font-size: 2rem;
+  font-size: 3rem;
   font-weight: bold;
-  color:black;
+  color: black;
 }
 
 .text-left .highlight {
-  color: #1565C0; /* Azul forte para destacar "Wellness Haven" */
+  color: #1565C0;
+}
+
+.text-right {
+  flex: 1;
 }
 
 .text-right p {
-  font-size: 1rem;
-  color:black;
-  max-width: 400px;
+  font-size: 1.2rem;
+  color: black;
+  max-width: 500px;
 }
 </style>
