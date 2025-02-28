@@ -12,12 +12,13 @@ export default {
   data() {
     return {
       homeServicesList: [
-        { id: 1, serviceName: "Massagem Terapêutica", serviceIcon: "💆", serviceDescription: "Relaxe e alivie tensões com nossa massagem terapêutica." },
-        { id: 2, serviceName: "Acupuntura", serviceIcon: "🩸", serviceDescription: "Equilibre sua energia e melhore sua saúde com acupuntura." },
-        { id: 3, serviceName: "Yoga", serviceIcon: "🧘", serviceDescription: "Aprimore sua flexibilidade e bem-estar com nossas aulas de Yoga." },
-        { id: 4, serviceName: "Nutrição", serviceIcon: "🥗", serviceDescription: "Aprenda a se alimentar de forma saudável e equilibrada." },
-        { id: 5, serviceName: "Fisioterapia", serviceIcon: "🏋️", serviceDescription: "Recupere-se de lesões e melhore sua mobilidade." }
+        { id: 1, serviceName: "Massagem Terapêutica", serviceDescription: "Relaxe e alivie tensões com nossa massagem terapêutica." },
+        { id: 2, serviceName: "Acupuntura", serviceDescription: "Equilibre sua energia e melhore sua saúde com acupuntura." },
+        { id: 3, serviceName: "Yoga", serviceDescription: "Aprimore sua flexibilidade e bem-estar com nossas aulas de Yoga." },
+        { id: 4, serviceName: "Nutrição", serviceDescription: "Aprenda a se alimentar de forma saudável e equilibrada." },
+        { id: 5, serviceName: "Fisioterapia", serviceDescription: "Recupere-se de lesões e melhore sua mobilidade." }
       ],
+      serviceImage: "https://i.ibb.co/NTkykk0/teste-toxicologico-7-11zon.webp"
     };
   }
 };
@@ -36,8 +37,10 @@ export default {
     }">
       <slide v-for="service in homeServicesList" :key="service.id">
         <div class="home-service-card">
+          <div class="home-service-image">
+            <img :src="serviceImage" alt="Imagem do serviço">
+          </div>
           <div class="home-service-card-content">
-            <span class="home-service-icon">{{ service.serviceIcon }}</span>
             <p class="home-service-name">{{ service.serviceName }}</p>
           </div>
           <div class="home-service-card-hover">
@@ -90,25 +93,39 @@ export default {
   overflow: hidden;
   transition: transform 0.3s;
   border-radius: 10%;
+  display: flex;
+  flex-direction: column;
 }
 
 .home-service-card:hover {
   transform: scale(1.05);
 }
 
-.home-service-card-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  position: relative;
-  background: linear-gradient(to top, #FFF, #D0DFF2);
-  transition: transform 0.4s ease-in-out;
+.home-service-image {
+  width: 100%;
+  height: 70%;
 }
 
-.home-service-card:hover .home-service-card-content {
-  transform: translateY(-40%);
+.home-service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-service-card-content {
+  height: 30%;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  background: linear-gradient(to top, #FFF, #D0DFF2);
+  justify-content: flex-start;
+}
+
+.home-service-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: black;
+  text-align: left;
 }
 
 .home-service-card-hover {
@@ -133,13 +150,6 @@ export default {
 .home-service-card:hover .home-service-card-hover {
   bottom: 0;
   opacity: 1;
-}
-
-.home-service-name {
-  font-size: 1rem;
-  font-weight: bold;
-  color: black;
-  text-align: center;
 }
 
 .home-service-description {
