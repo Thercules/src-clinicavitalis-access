@@ -5,14 +5,14 @@ export default {
 </script>
 
 <template>
-  <section class="container">
-    <div class="text-left">
+  <section class="home-subtext-container">
+    <div class="home-subtext-title-wrapper">
       <h1>
         Epicentro da Saúde <br />
-        <span class="highlight">Conheça a Vitalis</span>
+        <span class="home-subtext-highlight">Conheça a Vitalis</span>
       </h1>
     </div>
-    <div class="text-right">
+    <div class="home-subtext-description-wrapper">
       <p>
         Ex purus dui, vehicula sed dignissim vitae, facilisi eu lacus.
         Nulla vulputate sed dignissim velit luctus. Donec nulla
@@ -23,7 +23,7 @@ export default {
 </template>
 
 <style scoped>
-.container {
+.home-subtext-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,25 +34,25 @@ export default {
   margin-top: 60px;
 }
 
-.text-left {
+.home-subtext-title-wrapper {
   flex: 1;
 }
 
-.text-left h1 {
+.home-subtext-title-wrapper h1 {
   font-size: 3rem;
   font-weight: bold;
   color: black;
 }
 
-.text-left .highlight {
+.home-subtext-highlight {
   color: #1565C0;
 }
 
-.text-right {
+.home-subtext-description-wrapper {
   flex: 1;
 }
 
-.text-right p {
+.home-subtext-description-wrapper p {
   font-size: 1.2rem;
   color: black;
   max-width: 500px;
