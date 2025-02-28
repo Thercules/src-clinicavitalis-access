@@ -29,7 +29,11 @@ export default {
       <h1>Explore Nossos Serviços</h1>
       <p>Descubra uma variedade de serviços para o seu bem-estar</p>
     </div>
-    <carousel :items-to-show="3" :wrap-around="true" class="carousel">
+    <carousel :items-to-show="3" :wrap-around="true" class="carousel" :breakpoints="{
+      768: { itemsToShow: 3 },
+      480: { itemsToShow: 1 },
+      320: { itemsToShow: 1 }
+    }">
       <slide v-for="service in services" :key="service.id">
         <div class="service-card">
           <div class="card-content">
