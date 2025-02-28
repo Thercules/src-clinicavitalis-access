@@ -11,12 +11,12 @@ export default {
   },
   data() {
     return {
-      services: [
-        { id: 1, name: "Massagem Terapêutica", icon: "💆", description: "Relaxe e alivie tensões com nossa massagem terapêutica." },
-        { id: 2, name: "Acupuntura", icon: "🩸", description: "Equilibre sua energia e melhore sua saúde com acupuntura." },
-        { id: 3, name: "Yoga", icon: "🧘", description: "Aprimore sua flexibilidade e bem-estar com nossas aulas de Yoga." },
-        { id: 4, name: "Nutrição", icon: "🥗", description: "Aprenda a se alimentar de forma saudável e equilibrada." },
-        { id: 5, name: "Fisioterapia", icon: "🏋️", description: "Recupere-se de lesões e melhore sua mobilidade." }
+      homeServicesList: [
+        { id: 1, serviceName: "Massagem Terapêutica", serviceIcon: "💆", serviceDescription: "Relaxe e alivie tensões com nossa massagem terapêutica." },
+        { id: 2, serviceName: "Acupuntura", serviceIcon: "🩸", serviceDescription: "Equilibre sua energia e melhore sua saúde com acupuntura." },
+        { id: 3, serviceName: "Yoga", serviceIcon: "🧘", serviceDescription: "Aprimore sua flexibilidade e bem-estar com nossas aulas de Yoga." },
+        { id: 4, serviceName: "Nutrição", serviceIcon: "🥗", serviceDescription: "Aprenda a se alimentar de forma saudável e equilibrada." },
+        { id: 5, serviceName: "Fisioterapia", serviceIcon: "🏋️", serviceDescription: "Recupere-se de lesões e melhore sua mobilidade." }
       ],
     };
   }
@@ -24,27 +24,27 @@ export default {
 </script>
 
 <template>
-  <section class="services-container">
-    <div class="text-center">
+  <section class="home-services-container">
+    <div class="home-services-header">
       <h1>Explore Nossos Serviços</h1>
       <p>Descubra uma variedade de serviços para o seu bem-estar</p>
     </div>
-    <carousel :items-to-show="3" :wrap-around="true" class="carousel" :breakpoints="{
+    <carousel :items-to-show="3" :wrap-around="true" class="home-services-carousel" :breakpoints="{
       768: { itemsToShow: 3 },
       480: { itemsToShow: 1 },
       320: { itemsToShow: 1 }
     }">
-      <slide v-for="service in services" :key="service.id">
-        <div class="service-card">
-          <div class="card-content">
-            <span class="icon">{{ service.icon }}</span>
-            <p class="service-name">{{ service.name }}</p>
+      <slide v-for="service in homeServicesList" :key="service.id">
+        <div class="home-service-card">
+          <div class="home-service-card-content">
+            <span class="home-service-icon">{{ service.serviceIcon }}</span>
+            <p class="home-service-name">{{ service.serviceName }}</p>
           </div>
-          <div class="card-hover">
-            <p class="service-description">{{ service.description }}</p>
-            <div class="buttons">
-              <button class="btn">🛈</button>
-              <button class="btn">➡</button>
+          <div class="home-service-card-hover">
+            <p class="home-service-description">{{ service.serviceDescription }}</p>
+            <div class="home-service-buttons">
+              <button class="home-service-btn">🛈</button>
+              <button class="home-service-btn">➡</button>
             </div>
           </div>
         </div>
@@ -57,31 +57,31 @@ export default {
 </template>
 
 <style scoped>
-.services-container {
+.home-services-container {
   text-align: center;
   padding: 40px;
   background: linear-gradient(to right, #FFF, #D0DFF2);
 }
 
-.text-center h1 {
+.home-services-header h1 {
   font-size: 2rem;
   font-weight: bold;
   color: black;
 }
 
-.text-center p {
+.home-services-header p {
   font-size: 1.2rem;
   color: black;
   margin-bottom: 20px;
 }
 
-.carousel {
+.home-services-carousel {
   max-width: 800px;
   height: 280px;
   margin: 0 auto;
 }
 
-.service-card {
+.home-service-card {
   position: relative;
   width: 200px;
   height: 260px;
@@ -92,11 +92,11 @@ export default {
   border-radius: 10%;
 }
 
-.service-card:hover {
+.home-service-card:hover {
   transform: scale(1.05);
 }
 
-.card-content {
+.home-service-card-content {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -107,11 +107,11 @@ export default {
   transition: transform 0.4s ease-in-out;
 }
 
-.service-card:hover .card-content {
+.home-service-card:hover .home-service-card-content {
   transform: translateY(-40%);
 }
 
-.card-hover {
+.home-service-card-hover {
   position: absolute;
   bottom: -50px;
   left: 0;
@@ -130,29 +130,29 @@ export default {
   transition: bottom 0.4s ease-in-out, opacity 0.4s ease-in-out;
 }
 
-.service-card:hover .card-hover {
+.home-service-card:hover .home-service-card-hover {
   bottom: 0;
   opacity: 1;
 }
 
-.service-name {
+.home-service-name {
   font-size: 1rem;
   font-weight: bold;
   color: black;
   text-align: center;
 }
 
-.service-description {
+.home-service-description {
   font-size: 0.8rem;
   margin-bottom: 8px;
 }
 
-.buttons {
+.home-service-buttons {
   display: flex;
   gap: 10px;
 }
 
-.btn {
+.home-service-btn {
   width: 30px;
   height: 30px;
   border: none;
@@ -164,7 +164,7 @@ export default {
   transition: background 0.3s;
 }
 
-.btn:hover {
+.home-service-btn:hover {
   background: #D0DFF2;
 }
 </style>
