@@ -57,7 +57,7 @@ export default {
   color: var(--color-background);
   padding: 12px 24px;
   border: none;
-  border-radius: 5px;
+  border-radius: 0 20px 20px 20px; 
   cursor: pointer;
   font-size: 1.2rem;
   margin: 20px 0;

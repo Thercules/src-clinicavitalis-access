@@ -28,7 +28,6 @@ export default {
     <div class="service-info-content">
       <button class="close-btn" @click="close">X</button>
       <div class="service-info-grid">
-        <!-- Primeira Coluna -->
         <div class="doctor-column">
           <div class="doctor-card">
             <img src="https://i.ibb.co/SXXydXVd/ai-generated-a-smiling-doctor-with-glasses-and-a-white-lab-coat-isolated-on-transparent-background-f.webp" alt="Médico" class="doctor-image" />
@@ -43,7 +42,6 @@ export default {
           </div>
         </div>
         
-        <!-- Segunda Coluna -->
         <div class="service-image-column">
           <img :src="service.image" alt="Imagem do serviço" class="service-image" />
         </div>
@@ -191,7 +189,7 @@ h1, h3 {
   font-size: 16px;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 0 20px 20px 20px; 
   transition: 0.3s ease-in-out;
 }
 

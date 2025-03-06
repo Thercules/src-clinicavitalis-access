@@ -4,6 +4,7 @@ import HomeSubTextComponent from "./components/HomeSubTextComponent.vue";
 import HomeImageComponent from "./components/HomeImageComponent.vue";
 import HomeServicesComponent from "./components/HomeServicesComponent.vue";
 import HomeContactComponent from "./components/HomeContactComponent.vue";
+import HomeSubNavbar from "./components/HomeSubNavbar.vue";
 
 export default {
   components: {
@@ -12,12 +13,14 @@ export default {
     HomeImageComponent,
     HomeServicesComponent,
     HomeContactComponent,
+    HomeSubNavbar,
   },
 };
 </script>
 
 <template>
   <HomeNavbar />
+  <HomeSubNavbar/>
   <HomeSubTextComponent />
   <HomeImageComponent />
   <HomeServicesComponent/>
