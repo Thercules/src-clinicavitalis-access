@@ -1,6 +1,7 @@
 <script>
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
+import ServiceInfoComponent from './ServiceInfoComponent.vue'; // Importando o componente com o novo nome
 
 export default {
   name: "HomeServicesComponent",
@@ -8,18 +9,30 @@ export default {
     Carousel,
     Slide,
     Navigation,
+    ServiceInfoComponent
   },
   data() {
     return {
       homeServicesList: [
-        { id: 1, serviceName: "Massagem Terapêutica", serviceDescription: "Relaxe e alivie tensões com nossa massagem terapêutica." },
-        { id: 2, serviceName: "Acupuntura", serviceDescription: "Equilibre sua energia e melhore sua saúde com acupuntura." },
-        { id: 3, serviceName: "Yoga", serviceDescription: "Aprimore sua flexibilidade e bem-estar com nossas aulas de Yoga." },
-        { id: 4, serviceName: "Nutrição", serviceDescription: "Aprenda a se alimentar de forma saudável e equilibrada." },
-        { id: 5, serviceName: "Fisioterapia", serviceDescription: "Recupere-se de lesões e melhore sua mobilidade." }
+        { id: 1, serviceName: "Massagem Terapêutica", serviceDescription: "Relaxe e alivie tensões com nossa massagem terapêutica.", serviceLargeDescription:"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", serviceImage: "https://i.ibb.co/NTkykk0/teste-toxicologico-7-11zon.webp" },
+        { id: 2, serviceName: "Acupuntura", serviceDescription: "Equilibre sua energia e melhore sua saúde com acupuntura.", serviceLargeDescription:"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", serviceImage: "https://i.ibb.co/8YmDBYY/teatroterapia-6-11zon.webp" },
+        { id: 3, serviceName: "Yoga", serviceDescription: "Aprimore sua flexibilidade e bem-estar com nossas aulas de Yoga.", serviceLargeDescription:"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", serviceImage: "https://i.ibb.co/k6GNs2w/predisposicao-4-11zon.webp" },
+        { id: 4, serviceName: "Nutrição", serviceDescription: "Aprenda a se alimentar de forma saudável e equilibrada.", serviceLargeDescription:"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", serviceImage: "https://i.ibb.co/DMbHDdK/aromaterapia2-11zon.webp" },
+        { id: 5, serviceName: "Fisioterapia", serviceDescription: "Recupere-se de lesões e melhore sua mobilidade.", serviceLargeDescription:"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?", serviceImage: "https://i.ibb.co/1XKTPdh/grupo-terapeutico2-11zon-1.webp" }
       ],
-      serviceImage: "https://i.ibb.co/NTkykk0/teste-toxicologico-7-11zon.webp"
+      selectedService: null 
     };
+  },
+  methods: {
+    openServiceInfo(service) {
+      this.selectedService = { 
+        image: service.serviceImage,
+        title: service.serviceName,
+        subtitle: service.serviceDescription,
+        description: service.serviceLargeDescription
+      };
+      this.$refs.serviceInfoComponent.show();
+    }
   }
 };
 </script>
@@ -30,15 +43,11 @@ export default {
       <h1>Explore Nossos Serviços</h1>
       <p>Descubra uma variedade de serviços para o seu bem-estar</p>
     </div>
-    <carousel :items-to-show="3" :wrap-around="true" class="home-services-carousel" :breakpoints="{
-      768: { itemsToShow: 3 },
-      480: { itemsToShow: 1 },
-      320: { itemsToShow: 1 }
-    }">
+    <carousel :items-to-show="3" :wrap-around="true" class="home-services-carousel">
       <slide v-for="service in homeServicesList" :key="service.id">
         <div class="home-service-card">
           <div class="home-service-image">
-            <img :src="serviceImage" alt="Imagem do serviço">
+            <img :src="service.serviceImage" alt="Imagem do serviço">
           </div>
           <div class="home-service-card-content">
             <p class="home-service-name">{{ service.serviceName }}</p>
@@ -46,7 +55,7 @@ export default {
           <div class="home-service-card-hover">
             <p class="home-service-description">{{ service.serviceDescription }}</p>
             <div class="home-service-buttons">
-              <button class="home-service-btn">🛈</button>
+              <button class="home-service-btn" @click="openServiceInfo(service)">🛈</button>
               <button class="home-service-btn">➡</button>
             </div>
           </div>
@@ -56,8 +65,11 @@ export default {
         <navigation />
       </template>
     </carousel>
+
+    <service-info-component ref="serviceInfoComponent" :service="selectedService" />
   </section>
 </template>
+
 
 <style scoped>
 .home-services-container {
