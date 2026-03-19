@@ -45,7 +45,6 @@ export default {
     selectDoctor(doctor) {
       this.searchQuery = doctor.name;
       console.log("Doutor selecionado:", doctor);
-      // Aqui você pode adicionar lógica para redirecionar ou fazer algo com a seleção
       this.searchOpen = false;
     },
     closeSearch() {
@@ -57,7 +56,6 @@ export default {
 
 <template>
   <nav class="navbar">
-    <!-- Barra Superior -->
     <div class="navbar__top">
       <div class="navbar__top-left">
         <a href="#" class="navbar__top-link">Marcar Consulta</a>
@@ -81,10 +79,9 @@ export default {
       </div>
     </div>
 
-    <!-- Barra Principal -->
     <div class="navbar__main">
       <div class="navbar__logo">
-        <span class="navbar__logo-text">REDE SOR</span>
+        <span class="navbar__logo-text">Clinica Vitallis</span>
       </div>
 
       <ul class="navbar__menu" :class="{ 'navbar__menu--open': mobileMenuOpen }">
@@ -105,7 +102,6 @@ export default {
             <span>🔍</span>
           </button>
 
-          <!-- Dropdown de Busca -->
           <div 
             class="navbar__search-dropdown" 
             :class="{ 'navbar__search-dropdown--open': searchOpen }"
@@ -152,7 +148,6 @@ export default {
       </div>
     </div>
 
-    <!-- Overlay para fechar dropdown -->
     <div 
       v-if="searchOpen" 
       class="navbar__overlay" 
@@ -178,7 +173,6 @@ export default {
   z-index: 1000;
 }
 
-/* ===== BARRA SUPERIOR ===== */
 .navbar__top {
   background-color: #003da5;
   display: flex;
@@ -225,7 +219,6 @@ export default {
   white-space: nowrap;
 }
 
-/* Toggle Switch */
 .navbar__toggle {
   width: 50px;
   height: 24px;
@@ -258,7 +251,6 @@ export default {
   left: 28px;
 }
 
-/* ===== BARRA PRINCIPAL ===== */
 .navbar__main {
   display: flex;
   justify-content: space-between;
@@ -309,7 +301,6 @@ export default {
   gap: 1rem;
 }
 
-/* ===== SEARCH ===== */
 .navbar__search-container {
   position: relative;
 }
@@ -330,7 +321,6 @@ export default {
   opacity: 0.7;
 }
 
-/* Dropdown de Busca */
 .navbar__search-dropdown {
   position: absolute;
   top: calc(100% + 10px);
@@ -417,7 +407,6 @@ export default {
   font-size: 0.9rem;
 }
 
-/* Overlay para fechar dropdown */
 .navbar__overlay {
   position: fixed;
   top: 0;
@@ -427,7 +416,6 @@ export default {
   z-index: 999;
 }
 
-/* Login Button */
 .navbar__login-btn {
   background-color: #003da5;
   color: white;
@@ -444,7 +432,6 @@ export default {
   background-color: #002875;
 }
 
-/* Hamburger Menu */
 .navbar__hamburger {
   display: none;
   flex-direction: column;
@@ -474,7 +461,6 @@ export default {
   transform: rotate(-45deg) translate(8px, -8px);
 }
 
-/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 1024px) {
   .navbar__top {
     flex-direction: column;

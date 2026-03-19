@@ -6,6 +6,7 @@ import HomeServicesComponent from "./components/HomeServicesComponent.vue";
 import HomeContactComponent from "./components/HomeContactComponent.vue";
 import HomeSubNavbar from "./components/HomeSubNavbar.vue";
 import HomeClinicImageComponent from "./components/HomeClinicImageComponent.vue";
+import HomeDoctorFilterComponent from "./components/HomeDoctorFilterComponent.vue";
 
 export default {
   components: {
@@ -16,6 +17,7 @@ export default {
     HomeServicesComponent,
     HomeContactComponent,
     HomeSubNavbar,
+    HomeDoctorFilterComponent,
   },
 };
 </script>
@@ -23,6 +25,7 @@ export default {
 <template>
   <HomeNavbar />
   <HomeSubNavbar/>
+  <HomeDoctorFilterComponent/>
   <HomeClinicImageComponent />
   <HomeSubTextComponent />
   <HomeImageComponent />
