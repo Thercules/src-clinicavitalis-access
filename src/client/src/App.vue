@@ -5,11 +5,13 @@ import HomeImageComponent from "./components/HomeImageComponent.vue";
 import HomeServicesComponent from "./components/HomeServicesComponent.vue";
 import HomeContactComponent from "./components/HomeContactComponent.vue";
 import HomeSubNavbar from "./components/HomeSubNavbar.vue";
+import HomeClinicImageComponent from "./components/HomeClinicImageComponent.vue";
 
 export default {
   components: {
     HomeNavbar,
     HomeSubTextComponent,
+    HomeClinicImageComponent,
     HomeImageComponent,
     HomeServicesComponent,
     HomeContactComponent,
@@ -21,6 +23,7 @@ export default {
 <template>
   <HomeNavbar />
   <HomeSubNavbar/>
+  <HomeClinicImageComponent />
   <HomeSubTextComponent />
   <HomeImageComponent />
   <HomeServicesComponent/>

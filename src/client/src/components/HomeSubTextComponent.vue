@@ -31,7 +31,6 @@ export default {
   gap: 40px;
   padding: 60px;
   background: linear-gradient(to right, #FFF, #D0DFF2);
-  margin-top: 60px;
 }
 
 .home-subtext-title-wrapper {
