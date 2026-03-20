@@ -1,6 +1,12 @@
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: "ServiceInfoComponent",
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
   props: {
     service: {
       type: Object,
@@ -52,8 +58,8 @@ export default {
           <p class="service-description">{{ service.description }}</p>
           
           <div class="button-container">
-            <button class="btn btn-primary">Agendar Consulta</button>
-            <button class="btn btn-secondary">Agendamento por whatsapp</button>
+            <button class="btn btn-primary">{{ t('serviceInfo.scheduleButton') }}</button>
+            <button class="btn btn-secondary">{{ t('serviceInfo.whatsappButton') }}</button>
           </div>
         </div>
       </div>

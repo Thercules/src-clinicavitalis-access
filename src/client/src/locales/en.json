@@ -1,0 +1,85 @@
+{
+  "navbar": {
+    "top": {
+      "blog": "Blog",
+      "about": "About Us",
+      "faq": "FAQ",
+      "help": "Help",
+      "location": "📍 Recife - PE",
+      "theme": "Theme"
+    },
+    "menu": {
+      "home": "Home",
+      "services": "Services",
+      "doctors": "Doctors",
+      "about": "About",
+      "contact": "Contact"
+    },
+    "login": "Login",
+    "searchPlaceholder": "Search doctor or specialty..."
+  },
+  "subnavbar": {
+    "healthPlans": "🏥 Health plans with unbeatable discounts! Sign up now and save! 💙",
+    "whatsapp": "24-hour service via WhatsApp: 📲 (99) 9.9999-9999",
+    "care": "Take care of your health with the best plans on the market! 🌟"
+  },
+  "homeSubText": {
+    "title": "Health Epicenter",
+    "highlight": "Meet Vitalis",
+    "description": "Ex purus dui, vehicula sed dignissim vitae, facilisi eu lacus. Nulla vulputate sed dignissim velit luctus. Donec nulla justo, venenatis et lacus non, tempus nulla."
+  },
+  "homeServices": {
+    "title": "Explore Our Services",
+    "subtitle": "Discover a variety of services for your wellness",
+    "services": [
+      {
+        "name": "Therapeutic Massage",
+        "description": "Relax and relieve tension with our therapeutic massage."
+      },
+      {
+        "name": "Toxicology Test",
+        "description": "Toxicology test with precision and safety."
+      },
+      {
+        "name": "General Consultation",
+        "description": "Complete medical consultation with qualified professionals."
+      },
+      {
+        "name": "Occupational Therapy",
+        "description": "Specialized therapy for better quality of life."
+      },
+      {
+        "name": "Physiotherapy",
+        "description": "Recover from injuries and improve your mobility."
+      }
+    ]
+  },
+  "homeContact": {
+    "question": "Didn't find what you're looking for and need more information?",
+    "description": "Talk to our consultants by clicking the button.",
+    "contactButton": "📞 Get in touch!",
+    "additionalContacts": "Additional contacts:",
+    "phone": "📞 Number: (88) 8.8888-8888",
+    "email": "📧 Commercial email: vitalis\\@email.com"
+  },
+  "homeDoctorFilter": {
+    "title": "Find the Ideal Doctor",
+    "specialties": "Specialties",
+    "filterSearch": "Refine Your Search",
+    "searchDoctor": "Search doctor or specialty...",
+    "gender": "Gender",
+    "searchButton": "SEARCH",
+    "doctorsFound": "Doctors found",
+    "scheduleConsult": "SCHEDULE YOUR CONSULTATION",
+    "noResults": "No doctors found with the selected criteria.",
+    "genderOptions": {
+      "all": "All",
+      "male": "Male",
+      "female": "Female"
+    }
+  },
+  "serviceInfo": {
+    "scheduleButton": "Schedule Consultation",
+    "whatsappButton": "Schedule via whatsapp"
+  }
+}

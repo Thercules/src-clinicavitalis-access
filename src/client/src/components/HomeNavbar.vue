@@ -1,6 +1,12 @@
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: "HomeNavbar",
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
   data() {
     return {
       mobileMenuOpen: false,
@@ -58,16 +64,16 @@ export default {
   <nav class="navbar">
     <div class="navbar__top">
       <div class="navbar__top-left">
-        <a href="#" class="navbar__top-link">Marcar Consulta</a>
-        <a href="#" class="navbar__top-link">Marcar Exame</a>
+        <a href="#" class="navbar__top-link">{{ t('navbar.top.blog') }}</a>
+        <a href="#" class="navbar__top-link">{{ t('navbar.top.about') }}</a>
         <a href="tel:3005-3230" class="navbar__top-link">3005-3230</a>
-        <a href="#" class="navbar__top-link">Ouvidoria</a>
-        <a href="#" class="navbar__top-link">Notícias</a>
+        <a href="#" class="navbar__top-link">{{ t('navbar.top.help') }}</a>
+        <a href="#" class="navbar__top-link">{{ t('navbar.top.faq') }}</a>
       </div>
 
       <div class="navbar__top-right">
         <div class="navbar__location">
-          <span class="navbar__location-text">Localização desiganda Clique ao lado para ativar</span>
+          <span class="navbar__location-text">{{ t('navbar.top.location') }}</span>
           <button 
             class="navbar__toggle" 
             :class="{ 'navbar__toggle--active': locationEnabled }"
@@ -113,7 +119,7 @@ export default {
               v-model="searchQuery"
               type="text"
               class="navbar__search-input"
-              placeholder="Procure por doutor ou especialidade..."
+              :placeholder="t('navbar.searchPlaceholder')"
             />
             <div class="navbar__search-results">
               <div 
@@ -126,14 +132,14 @@ export default {
                 <div class="navbar__search-item-specialty">{{ doctor.specialty }}</div>
               </div>
               <div v-if="filteredDoctors.length === 0" class="navbar__search-empty">
-                Nenhum doutor encontrado
+                {{ t('homeDoctorFilter.noResults') }}
               </div>
             </div>
           </div>
         </div>
 
         <router-link to="/login-register">
-          <button class="navbar__login-btn">ENTRAR</button>
+          <button class="navbar__login-btn">{{ t('navbar.login') }}</button>
         </router-link>
         <button 
           class="navbar__hamburger" 

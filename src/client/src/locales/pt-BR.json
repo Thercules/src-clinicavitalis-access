@@ -1,0 +1,85 @@
+{
+  "navbar": {
+    "top": {
+      "blog": "Blog",
+      "about": "Sobre Nós",
+      "faq": "FAQ",
+      "help": "Ajuda",
+      "location": "📍 Recife - PE",
+      "theme": "Tema"
+    },
+    "menu": {
+      "home": "Home",
+      "services": "Serviços",
+      "doctors": "Médicos",
+      "about": "Sobre",
+      "contact": "Contato"
+    },
+    "login": "Entrar",
+    "searchPlaceholder": "Buscar médico ou especialidade..."
+  },
+  "subnavbar": {
+    "healthPlans": "🏥 Planos de saúde com descontos imperdíveis! Contrate agora e economize! 💙",
+    "whatsapp": "Atendimento 24h pelo WhatsApp: 📲 (99) 9.9999-9999",
+    "care": "Cuide da sua saúde com os melhores planos do mercado! 🌟"
+  },
+  "homeSubText": {
+    "title": "Epicentro da Saúde",
+    "highlight": "Conheça a Vitalis",
+    "description": "Ex purus dui, vehicula sed dignissim vitae, facilisi eu lacus. Nulla vulputate sed dignissim velit luctus. Donec nulla justo, venenatis et lacus non, tempus nulla."
+  },
+  "homeServices": {
+    "title": "Explore Nossos Serviços",
+    "subtitle": "Descubra uma variedade de serviços para o seu bem-estar",
+    "services": [
+      {
+        "name": "Massagem Terapêutica",
+        "description": "Relaxe e alivie tensões com nossa massagem terapêutica."
+      },
+      {
+        "name": "Teste Toxicológico",
+        "description": "Teste toxicológico com precisão e segurança."
+      },
+      {
+        "name": "Consulta Geral",
+        "description": "Consulta médica completa com profissionais qualificados."
+      },
+      {
+        "name": "Terapia Ocupacional",
+        "description": "Terapia especializada para melhor qualidade de vida."
+      },
+      {
+        "name": "Fisioterapia",
+        "description": "Recupere-se de lesões e melhore sua mobilidade."
+      }
+    ]
+  },
+  "homeContact": {
+    "question": "Não encontrou o que procura e precisa de mais informações?",
+    "description": "Fale com nossos consultores clicando no botão.",
+    "contactButton": "📞 Entre em contato!",
+    "additionalContacts": "Contatos adicionais:",
+    "phone": "📞 Número: (88) 8.8888-8888",
+    "email": "📧 E-mail comercial: vitalis\\@email.com"
+  },
+  "homeDoctorFilter": {
+    "title": "Encontre o Médico Ideal",
+    "specialties": "Especialidades",
+    "filterSearch": "Refine sua Busca",
+    "searchDoctor": "Buscar médico ou especialidade...",
+    "gender": "Gênero",
+    "searchButton": "BUSCAR",
+    "doctorsFound": "Doutores encontrados",
+    "scheduleConsult": "MARQUE SUA CONSULTA",
+    "noResults": "Nenhum médico encontrado com os critérios selecionados.",
+    "genderOptions": {
+      "all": "Todos",
+      "male": "Masculino",
+      "female": "Feminino"
+    }
+  },
+  "serviceInfo": {
+    "scheduleButton": "Agendar Consulta",
+    "whatsappButton": "Agendamento por whatsapp"
+  }
+}

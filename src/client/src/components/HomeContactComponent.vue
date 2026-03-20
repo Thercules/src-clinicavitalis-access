@@ -1,19 +1,25 @@
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: "HomeContactComponent",
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
 };
 </script>
 
 <template>
   <section class="home-contact-container">
     <div class="contact-info-wrapper">
-      <h2>Não encontrou o que procura e precisa de mais informações?</h2>
-      <p>Fale com nossos consultores clicando no botão.</p>
-      <button class="contact-button">📞 Entre em contato!</button>
+      <h2>{{ t('homeContact.question') }}</h2>
+      <p>{{ t('homeContact.description') }}</p>
+      <button class="contact-button">{{ t('homeContact.contactButton') }}</button>
       <div class="contact-details">
-        <h3>Contatos adicionais:</h3>
-        <p>📞 Número: (88) 8.8888-8888</p>
-        <p>📧 E-mail comercial: vitalis@email.com</p>
+        <h3>{{ t('homeContact.additionalContacts') }}</h3>
+        <p>{{ t('homeContact.phone') }}</p>
+        <p>{{ t('homeContact.email') }}</p>
       </div>
     </div>
     <div class="map-wrapper">

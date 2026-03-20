@@ -1,6 +1,12 @@
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: "HomeSubTextComponent",
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
 };
 </script>
 
@@ -8,15 +14,13 @@ export default {
   <section class="home-subtext-container">
     <div class="home-subtext-title-wrapper">
       <h1>
-        Epicentro da Saúde <br />
-        <span class="home-subtext-highlight">Conheça a Vitalis</span>
+        {{ t('homeSubText.title') }} <br />
+        <span class="home-subtext-highlight">{{ t('homeSubText.highlight') }}</span>
       </h1>
     </div>
     <div class="home-subtext-description-wrapper">
       <p>
-        Ex purus dui, vehicula sed dignissim vitae, facilisi eu lacus.
-        Nulla vulputate sed dignissim velit luctus. Donec nulla
-        justo, venenatis et lacus non, tempus nulla.
+        {{ t('homeSubText.description') }}
       </p>
     </div>
   </section>

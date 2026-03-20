@@ -1,7 +1,8 @@
 <script>
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
-import ServiceInfoComponent from './ServiceInfoComponent.vue'; // Importando o componente com o novo nome
+import { useI18n } from 'vue-i18n'
+import ServiceInfoComponent from './ServiceInfoComponent.vue';
 
 export default {
   name: "HomeServicesComponent",
@@ -10,6 +11,10 @@ export default {
     Slide,
     Navigation,
     ServiceInfoComponent
+  },
+  setup() {
+    const { t } = useI18n()
+    return { t }
   },
   data() {
     return {
@@ -40,8 +45,8 @@ export default {
 <template>
   <section class="home-services-container">
     <div class="home-services-header">
-      <h1>Explore Nossos Serviços</h1>
-      <p>Descubra uma variedade de serviços para o seu bem-estar</p>
+      <h1>{{ t('homeServices.title') }}</h1>
+      <p>{{ t('homeServices.subtitle') }}</p>
     </div>
     <carousel :items-to-show="3" :wrap-around="true" class="home-services-carousel">
       <slide v-for="service in homeServicesList" :key="service.id">

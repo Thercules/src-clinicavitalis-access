@@ -1,6 +1,12 @@
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: "HomeDoctorFilterComponent",
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
   data() {
     return {
       selectedSpecialty: "Clínico Geral",
@@ -82,7 +88,7 @@ export default {
         <div class="doctor_filter__left">
           <!-- Especialidades -->
           <div class="doctor_filter__section">
-            <h3 class="doctor_filter__subtitle">Especialista</h3>
+            <h3 class="doctor_filter__subtitle">{{ t('homeDoctorFilter.specialties') }}</h3>
             <div class="doctor_filter__specialty-list">
               <div 
                 v-for="specialty in specialties.slice(0, 7)" 
@@ -93,7 +99,7 @@ export default {
                 <span class="doctor_filter__specialty-icon">⏱</span>
                 <div>
                   <div class="doctor_filter__specialty-name">{{ specialty.name }}</div>
-                  <div class="doctor_filter__specialty-count">{{ specialty.count }} médicos</div>
+                  <div class="doctor_filter__specialty-count">{{ specialty.count }} {{ t('homeDoctorFilter.genderOptions.male') }}</div>
                 </div>
               </div>
             </div>
@@ -102,19 +108,19 @@ export default {
 
         <!-- Coluna Central: Busca -->
         <div class="doctor_filter__center">
-          <h1 class="doctor_filter__title">Encontre um {{ selectedSpecialty }} em {{ selectedLocation }}</h1>
+          <h1 class="doctor_filter__title">{{ t('homeDoctorFilter.title') }}</h1>
           
           <!-- Campos de Busca -->
           <div class="doctor_filter__search-container">
             <!-- Especialista -->
             <div class="doctor_filter__input-group">
-              <label class="doctor_filter__label">Especialista</label>
+              <label class="doctor_filter__label">{{ t('homeDoctorFilter.specialties') }}</label>
               <div class="doctor_filter__input-wrapper">
                 <input
                   v-model="searchQuery"
                   type="text"
                   class="doctor_filter__input"
-                  placeholder="Selecionar especialista..."
+                  :placeholder="t('homeDoctorFilter.searchDoctor')"
                   @focus="showSpecialtyDropdown = true"
                 />
                 <button 
@@ -149,7 +155,7 @@ export default {
 
             <!-- Localização -->
             <div class="doctor_filter__input-group">
-              <label class="doctor_filter__label">Localização</label>
+              <label class="doctor_filter__label">{{ t('homeDoctorFilter.filterSearch') }}</label>
               <div class="doctor_filter__input-wrapper">
                 <input
                   v-model="selectedLocation"
@@ -163,11 +169,11 @@ export default {
           </div>
 
           <!-- Botão Buscar -->
-          <button class="doctor_filter__search-btn" @click="search">BUSCAR</button>
+          <button class="doctor_filter__search-btn" @click="search">{{ t('homeDoctorFilter.searchButton') }}</button>
 
           <!-- Refine sua Busca -->
           <div class="doctor_filter__refine-section">
-            <h3 class="doctor_filter__refine-title">Refine sua busca</h3>
+            <h3 class="doctor_filter__refine-title">{{ t('homeDoctorFilter.filterSearch') }}</h3>
             
             <!-- Convênio -->
             <div class="doctor_filter__refine-group">
@@ -180,7 +186,7 @@ export default {
 
             <!-- Gênero -->
             <div class="doctor_filter__refine-group">
-              <label class="doctor_filter__refine-label">Filtrar por gênero</label>
+              <label class="doctor_filter__refine-label">{{ t('homeDoctorFilter.gender') }}</label>
               <div class="doctor_filter__gender-options">
                 <label class="doctor_filter__radio-label">
                   <input 
@@ -189,7 +195,7 @@ export default {
                     value="Todos"
                     class="doctor_filter__radio"
                   />
-                  <span>Todos</span>
+                  <span>{{ t('homeDoctorFilter.genderOptions.all') }}</span>
                 </label>
                 <label class="doctor_filter__radio-label">
                   <input 
@@ -198,7 +204,7 @@ export default {
                     value="Feminino"
                     class="doctor_filter__radio"
                   />
-                  <span>Feminino</span>
+                  <span>{{ t('homeDoctorFilter.genderOptions.female') }}</span>
                 </label>
                 <label class="doctor_filter__radio-label">
                   <input 
@@ -207,7 +213,7 @@ export default {
                     value="Masculino"
                     class="doctor_filter__radio"
                   />
-                  <span>Masculino</span>
+                  <span>{{ t('homeDoctorFilter.genderOptions.male') }}</span>
                 </label>
               </div>
             </div>
@@ -217,7 +223,7 @@ export default {
         <!-- Coluna Direita: Lista de Doutores -->
         <div class="doctor_filter__right">
           <div class="doctor_filter__doctors-header">
-            <h3 class="doctor_filter__doctors-title">Doutores encontrados</h3>
+            <h3 class="doctor_filter__doctors-title">{{ t('homeDoctorFilter.doctorsFound') }}</h3>
           </div>
           
           <div class="doctor_filter__doctors-list">
@@ -234,12 +240,12 @@ export default {
             </div>
             
             <div v-if="filteredDoctors.length === 0" class="doctor_filter__no-results">
-              Nenhum doutor encontrado
+              {{ t('homeDoctorFilter.noResults') }}
             </div>
           </div>
 
           <!-- Botão Marcar Consulta -->
-          <button class="doctor_filter__consult-btn">MARQUE SUA CONSULTA</button>
+          <button class="doctor_filter__consult-btn">{{ t('homeDoctorFilter.scheduleConsult') }}</button>
         </div>
       </div>
     </div>

@@ -1,15 +1,21 @@
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: "HomeSubNavbar",
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
 };
 </script>
 
 <template>
   <div class="home_subnavbar">
     <div class="home_subnavbar__content">
-      🏥 Planos de saúde com descontos imperdíveis! Contrate agora e economize! 💙 |  
-      Atendimento 24h pelo WhatsApp: 📲 (99) 9.9999-9999 |  
-      Cuide da sua saúde com os melhores planos do mercado! 🌟  
+      {{ t('subnavbar.healthPlans') }} |  
+      {{ t('subnavbar.whatsapp') }} |  
+      {{ t('subnavbar.care') }}
     </div>
   </div>
 </template>
