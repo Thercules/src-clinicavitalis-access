@@ -266,7 +266,6 @@ export default {
   padding: 2rem 0;
 }
 
-/* ===== OVERLAY ===== */
 .doctor_filter__overlay {
   display: flex;
   align-items: center;

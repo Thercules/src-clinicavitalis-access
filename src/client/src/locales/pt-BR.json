@@ -5,7 +5,7 @@
       "about": "Sobre Nós",
       "faq": "FAQ",
       "help": "Ajuda",
-      "location": "📍 Recife - PE",
+      "location": "Ativar Geolocalização",
       "theme": "Tema"
     },
     "menu": {
@@ -81,5 +81,10 @@
   "serviceInfo": {
     "scheduleButton": "Agendar Consulta",
     "whatsappButton": "Agendamento por whatsapp"
+  },
+  "libras": {
+    "buttonTitle": "Clique para ativar Libras",
+    "buttonLabel": "Botão de acessibilidade - Língua Brasileira de Sinais",
+    "buttonText": "Libras"
   }
 }

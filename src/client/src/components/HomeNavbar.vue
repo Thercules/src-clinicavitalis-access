@@ -66,7 +66,7 @@ export default {
       <div class="navbar__top-left">
         <a href="#" class="navbar__top-link">{{ t('navbar.top.blog') }}</a>
         <a href="#" class="navbar__top-link">{{ t('navbar.top.about') }}</a>
-        <a href="tel:3005-3230" class="navbar__top-link">3005-3230</a>
+        <a href="tel:99999999" class="navbar__top-link">99999999</a>
         <a href="#" class="navbar__top-link">{{ t('navbar.top.help') }}</a>
         <a href="#" class="navbar__top-link">{{ t('navbar.top.faq') }}</a>
       </div>

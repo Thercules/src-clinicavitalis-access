@@ -7,6 +7,9 @@ import HomeContactComponent from "./components/HomeContactComponent.vue";
 import HomeSubNavbar from "./components/HomeSubNavbar.vue";
 import HomeClinicImageComponent from "./components/HomeClinicImageComponent.vue";
 import HomeDoctorFilterComponent from "./components/HomeDoctorFilterComponent.vue";
+import SubFooter from "./components/SubFooter.vue";
+import Footer from "./components/Footer.vue";
+import LibrasButton from "./components/LibrasButton.vue";
 
 export default {
   components: {
@@ -18,6 +21,9 @@ export default {
     HomeContactComponent,
     HomeSubNavbar,
     HomeDoctorFilterComponent,
+    SubFooter,
+    Footer,
+    LibrasButton,
   },
 };
 </script>
@@ -31,10 +37,9 @@ export default {
   <HomeImageComponent />
   <HomeServicesComponent/>
   <HomeContactComponent/>
-  <div class="content">
-    <h1>Teste de enquadramento de componentes</h1>
-    <p>Se este conteúdo está abaixo do seu componente seguindo as ordens impostas acima, você fez corretamente.</p>
-  </div>
+  <SubFooter />
+  <Footer />
+  <LibrasButton />
 </template>
 
 <style scoped>
