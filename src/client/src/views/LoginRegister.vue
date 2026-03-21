@@ -1,91 +1,513 @@
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: "LoginRegister",
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
   data() {
     return {
       isLogin: true,
+      email: "",
+      password: "",
+      confirmPassword: "",
+      error: "",
+      loading: false,
     };
   },
   methods: {
     toggleForm() {
       this.isLogin = !this.isLogin;
+      this.error = "";
+      this.email = "";
+      this.password = "";
+      this.confirmPassword = "";
+    },
+    async handleSubmit() {
+      if (!this.email || !this.password) {
+        this.error = "Preencha todos os campos obrigatórios";
+        return;
+      }
+
+      if (!this.isLogin && this.password !== this.confirmPassword) {
+        this.error = "As senhas não correspondem";
+        return;
+      }
+
+      this.loading = true;
+      this.error = "";
+
+      try {
+        // Simular chamada de API
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log(
+          this.isLogin ? "Login realizado" : "Cadastro realizado",
+          { email: this.email }
+        );
+        // Aqui você pode fazer o redirecionamento após sucesso
+      } catch (err) {
+        this.error = "Erro ao processar a solicitação";
+      } finally {
+        this.loading = false;
+      }
     },
   },
 };
 </script>
 
 <template>
-  <div class="login-register">
-    <h2>{{ isLogin ? "Login" : "Cadastro" }}</h2>
-    <form>
-      <div class="form-group">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" required />
+  <div class="login-register-container">
+    <div class="login-register-wrapper">
+      <!-- Left Side - Branding -->
+      <div class="login-register-sidebar">
+        <div class="sidebar-content">
+          <h1 class="clinic-name">Clínica Vitalis</h1>
+          <p class="clinic-tagline">Saúde e bem-estar em primeiro lugar</p>
+          <div class="sidebar-icons">
+            <div class="icon-item">
+              <span class="icon">🏥</span>
+              <p>Atendimento de Excelência</p>
+            </div>
+            <div class="icon-item">
+              <span class="icon">👨‍⚕️</span>
+              <p>Médicos Qualificados</p>
+            </div>
+            <div class="icon-item">
+              <span class="icon">🕐</span>
+              <p>Agendamento Online</p>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <label for="password">Senha</label>
-        <input type="password" id="password" required />
+
+      <!-- Right Side - Form -->
+      <div class="login-register-form">
+        <div class="form-container">
+          <h2 class="form-title">{{ isLogin ? "Faça seu Login" : "Crie sua Conta" }}</h2>
+          <p class="form-subtitle">
+            {{ isLogin ? "Acesse sua conta para agendar consultas" : "Registre-se para começar a usar nossos serviços" }}
+          </p>
+
+          <form @submit.prevent="handleSubmit" class="form">
+            <div v-if="error" class="error-message">
+              {{ error }}
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input
+                v-model="email"
+                type="email"
+                id="email"
+                placeholder="seu@email.com"
+                required
+                :disabled="loading"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="password">Senha</label>
+              <input
+                v-model="password"
+                type="password"
+                id="password"
+                placeholder="Mínimo 6 caracteres"
+                required
+                :disabled="loading"
+              />
+            </div>
+
+            <div v-if="!isLogin" class="form-group">
+              <label for="confirmPassword">Confirmar Senha</label>
+              <input
+                v-model="confirmPassword"
+                type="password"
+                id="confirmPassword"
+                placeholder="Confirme sua senha"
+                required
+                :disabled="loading"
+              />
+            </div>
+
+            <button 
+              type="submit" 
+              class="submit-btn"
+              :disabled="loading"
+            >
+              {{ loading ? "Processando..." : (isLogin ? "Entrar" : "Cadastrar") }}
+            </button>
+          </form>
+
+          <div class="form-footer">
+            <p class="toggle-text">
+              {{ isLogin ? "Não tem conta?" : "Já tem uma conta?" }}
+              <button
+                type="button"
+                class="toggle-link"
+                @click="toggleForm"
+                :disabled="loading"
+              >
+                {{ isLogin ? "Cadastre-se aqui" : "Faça login aqui" }}
+              </button>
+            </p>
+          </div>
+
+          <div class="forgot-password" v-if="isLogin">
+            <a href="#" class="forgot-link">Esqueceu sua senha?</a>
+          </div>
+        </div>
       </div>
-      <div class="form-group">
-        <button type="submit">{{ isLogin ? "Entrar" : "Cadastrar" }}</button>
-      </div>
-    </form>
-    <p @click="toggleForm" class="toggle-link">
-      {{ isLogin ? "Não tem conta? Cadastre-se" : "Já tem uma conta? Faça login" }}
-    </p>
+    </div>
   </div>
 </template>
 
 <style scoped>
-.login-register {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-h2 {
+.login-register-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #003da5 0%, #0056d4 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.login-register-wrapper {
+  display: flex;
+  width: 90%;
+  max-width: 1000px;
+  height: auto;
+  max-height: 600px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.login-register-sidebar {
+  display: flex;
+  flex: 1;
+  background: linear-gradient(135deg, #003da5 0%, #0056d4 100%);
+  color: #fff;
+  padding: 3rem 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-content {
   text-align: center;
-  margin-bottom: 20px;
+}
+
+.clinic-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+}
+
+.clinic-tagline {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+.sidebar-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.icon-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+}
+
+.icon {
+  font-size: 2rem;
+}
+
+.icon-item p {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.login-register-form {
+  flex: 1;
+  padding: 3rem 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+}
+
+.form-container {
+  width: 100%;
+}
+
+.form-title {
+  font-size: 1.75rem;
+  color: #003da5;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.form-subtitle {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
 }
 
 .form-group {
-  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-input {
-  width: 100%;
-  padding: 8px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+  font-size: 0.95rem;
 }
 
-button {
-  width: 100%;
-  padding: 10px;
-  background-color: #52a9ff;
+.form-group input {
+  padding: 0.875rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  outline: none;
+  font-family: inherit;
+}
+
+.form-group input:focus {
+  border-color: #003da5;
+  box-shadow: 0 0 0 3px rgba(0, 61, 165, 0.1);
+}
+
+.form-group input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.error-message {
+  padding: 0.875rem;
+  background-color: #fee;
+  color: #c33;
+  border-left: 4px solid #c33;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.submit-btn {
+  padding: 0.975rem;
+  background: linear-gradient(135deg, #003da5 0%, #0056d4 100%);
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
   cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
 }
 
-button:hover {
-  background-color: #4078b2;
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 61, 165, 0.4);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.form-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.toggle-text {
+  color: #666;
+  font-size: 0.9rem;
 }
 
 .toggle-link {
-  text-align: center;
-  margin-top: 10px;
-  color: #52a9ff;
+  background: none;
+  border: none;
+  color: #003da5;
+  font-weight: 700;
   cursor: pointer;
+  transition: color 0.3s;
+  font-size: 0.9rem;
+  padding: 0;
 }
 
-.toggle-link:hover {
+.toggle-link:hover:not(:disabled) {
+  color: #0056d4;
   text-decoration: underline;
+}
+
+.toggle-link:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.forgot-password {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.forgot-link {
+  color: #003da5;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.forgot-link:hover {
+  color: #0056d4;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .login-register-wrapper {
+    flex-direction: column;
+    max-height: none;
+    width: 95%;
+  }
+
+  .login-register-sidebar {
+    padding: 2rem;
+    border-radius: 12px 12px 0 0;
+  }
+
+  .clinic-name {
+    font-size: 1.75rem;
+  }
+
+  .sidebar-icons {
+    gap: 1rem;
+  }
+
+  .icon-item {
+    padding: 0.75rem;
+  }
+
+  .icon {
+    font-size: 1.5rem;
+  }
+
+  .icon-item p {
+    font-size: 0.85rem;
+  }
+
+  .login-register-form {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-container {
+    width: 100%;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+  }
+
+  .submit-btn {
+    padding: 0.875rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-register-container {
+    padding: 1rem;
+  }
+
+  .login-register-wrapper {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .login-register-sidebar {
+    padding: 1.5rem 1rem;
+  }
+
+  .clinic-name {
+    font-size: 1.5rem;
+  }
+
+  .clinic-tagline {
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .sidebar-icons {
+    gap: 0.75rem;
+  }
+
+  .icon-item {
+    padding: 0.6rem 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .icon {
+    font-size: 1.25rem;
+  }
+
+  .icon-item p {
+    font-size: 0.75rem;
+  }
+
+  .login-register-form {
+    padding: 1.5rem 1rem;
+  }
+
+  .form-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .form-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .form {
+    gap: 1rem;
+  }
+
+  .form-group input {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .submit-btn {
+    padding: 0.8rem;
+    font-size: 0.9rem;
+  }
 }
 </style>

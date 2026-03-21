@@ -66,7 +66,6 @@ onMounted(() => {
       
       script.onerror = () => {
         console.error('❌ Erro ao carregar VLibras')
-        // Tenta carregar do CDN alternativo
         const altScript = document.createElement('script')
         altScript.src = 'https://www.vlibras.gov.br/app'
         altScript.async = true

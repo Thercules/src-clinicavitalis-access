@@ -1,4 +1,5 @@
 <script>
+import { useRoute } from 'vue-router'
 import HomeNavbar from "./components/HomeNavbar.vue";
 import HomeSubTextComponent from "./components/HomeSubTextComponent.vue";
 import HomeImageComponent from "./components/HomeImageComponent.vue";
@@ -27,22 +28,34 @@ export default {
     HomeFooter,
     HomeLibrasButton,
   },
+  setup() {
+    const route = useRoute()
+    return { route }
+  },
+  computed: {
+    isBlankLayout() {
+      return this.$route.meta.layout === 'blank'
+    }
+  }
 };
 </script>
 
 <template>
-  <HomeNavbar />
-  <HomeSubNavbar/>
-  <HomeDoctorFilterComponent/>
-  <HomeClinicImageComponent />
-  <HomeSubTextComponent />
-  <HomeImageComponent />
-  <HomeServicesComponent/>
-  <HomeNews />
-  <HomeContactComponent/>
-  <HomeSubFooter />
-  <HomeFooter />
-  <HomeLibrasButton />
+  <router-view v-if="isBlankLayout" />
+  <div v-else>
+    <HomeNavbar />
+    <HomeSubNavbar/>
+    <HomeDoctorFilterComponent/>
+    <HomeClinicImageComponent />
+    <HomeSubTextComponent />
+    <HomeImageComponent />
+    <HomeServicesComponent/>
+    <HomeNews />
+    <HomeContactComponent/>
+    <HomeSubFooter />
+    <HomeFooter />
+    <HomeLibrasButton />
+  </div>
 </template>
 
 <style scoped>
