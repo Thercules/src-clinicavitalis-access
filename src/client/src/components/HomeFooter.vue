@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "Footer",
+  name: "HomeFooter",
   data() {
     return {
       currentYear: new Date().getFullYear()

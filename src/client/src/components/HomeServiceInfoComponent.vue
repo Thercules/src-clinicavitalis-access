@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 
 export default {
-  name: "ServiceInfoComponent",
+  name: "HomeServiceInfoComponent",
   setup() {
     const { t } = useI18n()
     return { t }

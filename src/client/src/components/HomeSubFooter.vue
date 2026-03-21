@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: "SubFooter"
+  name: "HomeSubFooter"
 };
 </script>
 

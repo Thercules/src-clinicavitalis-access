@@ -7,9 +7,9 @@ import HomeContactComponent from "./components/HomeContactComponent.vue";
 import HomeSubNavbar from "./components/HomeSubNavbar.vue";
 import HomeClinicImageComponent from "./components/HomeClinicImageComponent.vue";
 import HomeDoctorFilterComponent from "./components/HomeDoctorFilterComponent.vue";
-import SubFooter from "./components/SubFooter.vue";
-import Footer from "./components/Footer.vue";
-import LibrasButton from "./components/LibrasButton.vue";
+import HomeSubFooter from "./components/HomeSubFooter.vue";
+import HomeFooter from "./components/HomeFooter.vue";
+import HomeLibrasButton from "./components/HomeLibrasButton.vue";
 
 export default {
   components: {
@@ -21,9 +21,9 @@ export default {
     HomeContactComponent,
     HomeSubNavbar,
     HomeDoctorFilterComponent,
-    SubFooter,
-    Footer,
-    LibrasButton,
+    HomeSubFooter,
+    HomeFooter,
+    HomeLibrasButton,
   },
 };
 </script>
@@ -37,9 +37,9 @@ export default {
   <HomeImageComponent />
   <HomeServicesComponent/>
   <HomeContactComponent/>
-  <SubFooter />
-  <Footer />
-  <LibrasButton />
+  <HomeSubFooter />
+  <HomeFooter />
+  <HomeLibrasButton />
 </template>
 
 <style scoped>
