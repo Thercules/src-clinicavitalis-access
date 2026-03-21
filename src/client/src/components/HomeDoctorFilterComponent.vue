@@ -1,11 +1,13 @@
 <script>
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 
 export default {
   name: "HomeDoctorFilterComponent",
   setup() {
     const { t } = useI18n()
-    return { t }
+    const router = useRouter()
+    return { t, router }
   },
   data() {
     return {
@@ -14,6 +16,7 @@ export default {
       searchQuery: "",
       showSpecialtyDropdown: false,
       selectedGender: "Todos",
+      selectedDoctor: null,
       
       specialties: [
         { id: 1, name: "Clínico Geral", count: 928 },
@@ -65,6 +68,23 @@ export default {
     
     clearSpecialty() {
       this.selectedSpecialty = "";
+    },
+    
+    selectDoctor(doctor) {
+      this.selectedDoctor = doctor;
+    },
+    
+    scheduleConsultation() {
+      if (!this.selectedDoctor) {
+        alert("Por favor, selecione um médico primeiro");
+        return;
+      }
+      
+      // Salvar dados do médico no localStorage
+      localStorage.setItem('selectedDoctor', JSON.stringify(this.selectedDoctor));
+      
+      // Navegar para tela de agendamento
+      this.router.push('/schedule-consultation');
     },
     
     search() {
@@ -218,6 +238,8 @@ export default {
               v-for="doctor in filteredDoctors"
               :key="doctor.id"
               class="doctor_filter__doctor-card"
+              :class="{ 'doctor_filter__doctor-card--selected': selectedDoctor?.id === doctor.id }"
+              @click="selectDoctor(doctor)"
             >
               <img :src="doctor.image" :alt="doctor.name" class="doctor_filter__doctor-image" />
               <div class="doctor_filter__doctor-info">
@@ -231,7 +253,7 @@ export default {
             </div>
           </div>
 
-          <button class="doctor_filter__consult-btn">{{ t('homeDoctorFilter.scheduleConsult') }}</button>
+          <button class="doctor_filter__consult-btn" @click="scheduleConsultation">{{ t('homeDoctorFilter.scheduleConsult') }}</button>
         </div>
       </div>
     </div>
@@ -588,6 +610,12 @@ export default {
 
 .doctor_filter__doctor-card:hover {
   background-color: #f5f5f5;
+}
+
+.doctor_filter__doctor-card--selected {
+  background-color: #e3f2fd;
+  border-color: #003da5;
+  border: 2px solid #003da5;
 }
 
 .doctor_filter__doctor-image {
