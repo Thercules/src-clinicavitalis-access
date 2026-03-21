@@ -80,13 +80,10 @@ export default {
 
 <template>
   <section class="doctor_filter">
-    <!-- Overlay -->
     <div class="doctor_filter__overlay">
       <div class="doctor_filter__content">
         
-        <!-- Coluna Esquerda: Especialidades -->
         <div class="doctor_filter__left">
-          <!-- Especialidades -->
           <div class="doctor_filter__section">
             <h3 class="doctor_filter__subtitle">{{ t('homeDoctorFilter.specialties') }}</h3>
             <div class="doctor_filter__specialty-list">
@@ -106,13 +103,10 @@ export default {
           </div>
         </div>
 
-        <!-- Coluna Central: Busca -->
         <div class="doctor_filter__center">
           <h1 class="doctor_filter__title">{{ t('homeDoctorFilter.title') }}</h1>
           
-          <!-- Campos de Busca -->
           <div class="doctor_filter__search-container">
-            <!-- Especialista -->
             <div class="doctor_filter__input-group">
               <label class="doctor_filter__label">{{ t('homeDoctorFilter.specialties') }}</label>
               <div class="doctor_filter__input-wrapper">
@@ -132,7 +126,6 @@ export default {
                 </button>
               </div>
 
-              <!-- Dropdown de Especialidades -->
               <div 
                 v-if="showSpecialtyDropdown"
                 class="doctor_filter__dropdown"
@@ -153,7 +146,6 @@ export default {
               </div>
             </div>
 
-            <!-- Localização -->
             <div class="doctor_filter__input-group">
               <label class="doctor_filter__label">{{ t('homeDoctorFilter.filterSearch') }}</label>
               <div class="doctor_filter__input-wrapper">
@@ -168,14 +160,11 @@ export default {
             </div>
           </div>
 
-          <!-- Botão Buscar -->
           <button class="doctor_filter__search-btn" @click="search">{{ t('homeDoctorFilter.searchButton') }}</button>
 
-          <!-- Refine sua Busca -->
           <div class="doctor_filter__refine-section">
             <h3 class="doctor_filter__refine-title">{{ t('homeDoctorFilter.filterSearch') }}</h3>
             
-            <!-- Convênio -->
             <div class="doctor_filter__refine-group">
               <label class="doctor_filter__refine-label">CONVÊNIO</label>
               <div class="doctor_filter__refine-input">
@@ -184,7 +173,6 @@ export default {
               </div>
             </div>
 
-            <!-- Gênero -->
             <div class="doctor_filter__refine-group">
               <label class="doctor_filter__refine-label">{{ t('homeDoctorFilter.gender') }}</label>
               <div class="doctor_filter__gender-options">
@@ -220,7 +208,6 @@ export default {
           </div>
         </div>
 
-        <!-- Coluna Direita: Lista de Doutores -->
         <div class="doctor_filter__right">
           <div class="doctor_filter__doctors-header">
             <h3 class="doctor_filter__doctors-title">{{ t('homeDoctorFilter.doctorsFound') }}</h3>
@@ -244,7 +231,6 @@ export default {
             </div>
           </div>
 
-          <!-- Botão Marcar Consulta -->
           <button class="doctor_filter__consult-btn">{{ t('homeDoctorFilter.scheduleConsult') }}</button>
         </div>
       </div>
@@ -282,7 +268,6 @@ export default {
   max-width: 1400px;
 }
 
-/* ===== COLUNA ESQUERDA ===== */
 .doctor_filter__left {
   display: flex;
   flex-direction: column;
@@ -340,7 +325,6 @@ export default {
   font-size: 0.75rem;
 }
 
-/* ===== COLUNA CENTRAL ===== */
 .doctor_filter__center {
   display: flex;
   flex-direction: column;
@@ -416,7 +400,6 @@ export default {
   align-items: center;
 }
 
-/* Dropdown de Especialidades */
 .doctor_filter__dropdown {
   position: absolute;
   top: calc(100% + 0.5rem);
@@ -448,7 +431,6 @@ export default {
   border-bottom: none;
 }
 
-/* Tag de Seleção */
 .doctor_filter__selected-tag {
   display: inline-flex;
   align-items: center;
@@ -473,7 +455,6 @@ export default {
   padding: 0;
 }
 
-/* Botão Buscar */
 .doctor_filter__search-btn {
   background-color: #f79646;
   color: white;
@@ -491,7 +472,6 @@ export default {
   background-color: #e67e35;
 }
 
-/* Refine sua Busca */
 .doctor_filter__refine-section {
   background-color: #f9f9f9;
   padding: 1.5rem;
@@ -549,7 +529,6 @@ export default {
   pointer-events: none;
 }
 
-/* Opções de Gênero */
 .doctor_filter__gender-options {
   display: flex;
   flex-direction: column;
@@ -571,7 +550,6 @@ export default {
   cursor: pointer;
 }
 
-/* ===== COLUNA DIREITA ===== */
 .doctor_filter__right {
   display: flex;
   flex-direction: column;
@@ -648,7 +626,6 @@ export default {
   font-size: 0.9rem;
 }
 
-/* Botão Marcar Consulta */
 .doctor_filter__consult-btn {
   background-color: #003da5;
   color: white;
@@ -666,7 +643,6 @@ export default {
   background-color: #002875;
 }
 
-/* ===== RESPONSIVIDADE ===== */
 @media (max-width: 1200px) {
   .doctor_filter__content {
     grid-template-columns: 200px 1fr 250px;

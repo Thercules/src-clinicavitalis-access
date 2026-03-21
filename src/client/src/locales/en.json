@@ -195,5 +195,60 @@
         ]
       }
     }
+  },
+  "homeNews": {
+    "title": "Latest News",
+    "subtitle": "Stay updated with news about health and wellness",
+    "readMore": "Read More",
+    "news": [
+      {
+        "id": 1,
+        "title": "Advances in Preventive Medicine",
+        "excerpt": "Discover the latest innovations in chronic disease prevention.",
+        "date": "March 20, 2026",
+        "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop",
+        "category": "Health"
+      },
+      {
+        "id": 2,
+        "title": "Benefits of Modern Acupuncture",
+        "excerpt": "Discover how acupuncture can improve your quality of life.",
+        "date": "March 18, 2026",
+        "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+        "category": "Therapies"
+      },
+      {
+        "id": 3,
+        "title": "The Importance of Mental Health",
+        "excerpt": "A complete guide on how to take care of your mental health.",
+        "date": "March 15, 2026",
+        "image": "https://images.unsplash.com/photo-1516826957519-c21ff76cb051?w=600&h=400&fit=crop",
+        "category": "Wellness"
+      },
+      {
+        "id": 4,
+        "title": "Nutrition and Longevity",
+        "excerpt": "Learn how proper nutrition can increase your life expectancy.",
+        "date": "March 12, 2026",
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop",
+        "category": "Nutrition"
+      },
+      {
+        "id": 5,
+        "title": "Fitness Trends 2026",
+        "excerpt": "Discover the most effective and innovative workouts of the year.",
+        "date": "March 10, 2026",
+        "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop",
+        "category": "Fitness"
+      },
+      {
+        "id": 6,
+        "title": "Technology in Healthcare",
+        "excerpt": "How technology is revolutionizing medical care.",
+        "date": "March 8, 2026",
+        "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+        "category": "Technology"
+      }
+    ]
   }
 }

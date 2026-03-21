@@ -195,5 +195,60 @@
         ]
       }
     }
+  },
+  "homeNews": {
+    "title": "Últimas Notícias",
+    "subtitle": "Fique atualizado com as novidades sobre saúde e bem-estar",
+    "readMore": "Ler Mais",
+    "news": [
+      {
+        "id": 1,
+        "title": "Avanços na Medicina Preventiva",
+        "excerpt": "Conheça as últimas inovações em prevenção de doenças crônicas.",
+        "date": "20 de Março, 2026",
+        "image": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&h=400&fit=crop",
+        "category": "Saúde"
+      },
+      {
+        "id": 2,
+        "title": "Benefícios da Acupuntura Moderna",
+        "excerpt": "Descubra como a acupuntura pode melhorar sua qualidade de vida.",
+        "date": "18 de Março, 2026",
+        "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+        "category": "Terapias"
+      },
+      {
+        "id": 3,
+        "title": "Importância da Saúde Mental",
+        "excerpt": "Um guia completo sobre como cuidar da sua saúde mental.",
+        "date": "15 de Março, 2026",
+        "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+        "category": "Bem-estar"
+      },
+      {
+        "id": 4,
+        "title": "Nutrição e Longevidade",
+        "excerpt": "Aprenda como a alimentação correta pode aumentar sua expectativa de vida.",
+        "date": "12 de Março, 2026",
+        "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&h=400&fit=crop",
+        "category": "Nutrição"
+      },
+      {
+        "id": 5,
+        "title": "Tendências em Fitness 2026",
+        "excerpt": "Conheça os treinos mais eficazes e inovadores do ano.",
+        "date": "10 de Março, 2026",
+        "image": "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop",
+        "category": "Fitness"
+      },
+      {
+        "id": 6,
+        "title": "Tecnologia na Saúde",
+        "excerpt": "Como a tecnologia está revolucionando o atendimento médico.",
+        "date": "08 de Março, 2026",
+        "image": "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&h=400&fit=crop",
+        "category": "Tecnologia"
+      }
+    ]
   }
 }
