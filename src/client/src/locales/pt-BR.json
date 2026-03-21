@@ -86,5 +86,114 @@
     "buttonTitle": "Clique para ativar Libras",
     "buttonLabel": "Botão de acessibilidade - Língua Brasileira de Sinais",
     "buttonText": "Libras"
+  },
+  "homeFooter": {
+    "copyright": "© {year} Clinica Vitallis | TODOS OS DIREITOS RESERVADOS.",
+    "privacyNotice": "Aviso de Privacidade",
+    "cookieNotice": "Aviso de Cookies"
+  },
+  "homeSubFooter": {
+    "logo": "Clinica Vitallis",
+    "contact": {
+      "dora": "Fale com a Dora",
+      "doraPhone": "(21) 2101-2658",
+      "central": "Central",
+      "centralPhone": "3003-3230"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "twitter": "X/Twitter",
+      "whatsapp": "WhatsApp",
+      "youtube": "YouTube"
+    },
+    "menu": {
+      "home": {
+        "title": "HOME",
+        "items": [
+          "Para Pacientes",
+          "Especialidades",
+          "Exames e Procedimentos",
+          "Encontre uma Unidade",
+          "Encontre um Médico",
+          "Marcação de Consultas",
+          "Marcação de Exames",
+          "Resultado de Exames",
+          "Emergências",
+          "Planos e Convênios",
+          "Programas de Cuidado",
+          "Doenças",
+          "Vacinas",
+          "Transplantes",
+          "Patologia Molecular - Testes Genéticos"
+        ]
+      },
+      "exams": {
+        "title": "Resultado de Exames",
+        "items": [
+          "Encontre um Médico",
+          "App da Cardiologia D'Or",
+          "Auto-agendamento Cirúrgico",
+          "Cursos e Palestras"
+        ]
+      },
+      "institutional": {
+        "title": "Institucional",
+        "items": [
+          "Quem somos",
+          "Histórico",
+          "Nossas Políticas",
+          "Sustentabilidade",
+          "Integridade e Ética",
+          "Privacidade",
+          "Relações com o Investidor",
+          "Projetos Sociais",
+          "Segurança da Informação"
+        ]
+      },
+      "specialties": {
+        "title": "Especialidades",
+        "items": [
+          "Oncologia D'Or",
+          "Rede Star",
+          "IDOR",
+          "Cardiologia D'Or",
+          "Maternidade D'Or"
+        ]
+      },
+      "partnerships": {
+        "title": "Parcerias",
+        "items": [
+          "Conheça nossas Parcerias"
+        ]
+      },
+      "app": {
+        "title": "Aplicativo Rede D'Or",
+        "items": [
+          "Contrais de Atendimento"
+        ]
+      },
+      "ombudsman": {
+        "title": "Ouvidoria",
+        "text": "Ouvidoria"
+      },
+      "news": {
+        "title": "Notícias",
+        "text": "Notícias"
+      },
+      "press": {
+        "title": "Imprensa",
+        "text": "Imprensa"
+      },
+      "careers": {
+        "title": "Trabalhe Conosco",
+        "items": [
+          "Dora - Assistente Digital",
+          "Responsáveis técnicos",
+          "Tua Saúde"
+        ]
+      }
+    }
   }
 }

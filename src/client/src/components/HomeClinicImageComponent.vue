@@ -20,7 +20,6 @@ position: relative;
 width: 100%;
 height: 500px;
 overflow: hidden;
-/* margin-top: calc(60px); */
 }
 
 .home_clinic_image__img {

@@ -86,5 +86,114 @@
     "buttonTitle": "Click to activate Libras",
     "buttonLabel": "Accessibility button - Brazilian Sign Language",
     "buttonText": "LIBRAS"
+  },
+  "homeFooter": {
+    "copyright": "© {year} Clinica Vitallis | ALL RIGHTS RESERVED.",
+    "privacyNotice": "Privacy Notice",
+    "cookieNotice": "Cookie Notice"
+  },
+  "homeSubFooter": {
+    "logo": "Clinica Vitallis",
+    "contact": {
+      "dora": "Talk to Dora",
+      "doraPhone": "(21) 2101-2658",
+      "central": "Central",
+      "centralPhone": "3003-3230"
+    },
+    "social": {
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "instagram": "Instagram",
+      "twitter": "X/Twitter",
+      "whatsapp": "WhatsApp",
+      "youtube": "YouTube"
+    },
+    "menu": {
+      "home": {
+        "title": "HOME",
+        "items": [
+          "For Patients",
+          "Specialties",
+          "Exams and Procedures",
+          "Find a Unit",
+          "Find a Doctor",
+          "Schedule Appointments",
+          "Schedule Exams",
+          "Exam Results",
+          "Emergencies",
+          "Health Plans and Agreements",
+          "Care Programs",
+          "Diseases",
+          "Vaccines",
+          "Transplants",
+          "Molecular Pathology - Genetic Tests"
+        ]
+      },
+      "exams": {
+        "title": "Exam Results",
+        "items": [
+          "Find a Doctor",
+          "Cardiology D'Or App",
+          "Surgical Self-Scheduling",
+          "Courses and Lectures"
+        ]
+      },
+      "institutional": {
+        "title": "Institutional",
+        "items": [
+          "About Us",
+          "History",
+          "Our Policies",
+          "Sustainability",
+          "Integrity and Ethics",
+          "Privacy",
+          "Investor Relations",
+          "Social Projects",
+          "Information Security"
+        ]
+      },
+      "specialties": {
+        "title": "Specialties",
+        "items": [
+          "Oncology D'Or",
+          "Star Network",
+          "IDOR",
+          "Cardiology D'Or",
+          "D'Or Maternity"
+        ]
+      },
+      "partnerships": {
+        "title": "Partnerships",
+        "items": [
+          "Know Our Partnerships"
+        ]
+      },
+      "app": {
+        "title": "D'Or Network App",
+        "items": [
+          "Service Contracts"
+        ]
+      },
+      "ombudsman": {
+        "title": "Ombudsman",
+        "text": "Ombudsman"
+      },
+      "news": {
+        "title": "News",
+        "text": "News"
+      },
+      "press": {
+        "title": "Press",
+        "text": "Press"
+      },
+      "careers": {
+        "title": "Work With Us",
+        "items": [
+          "Dora - Digital Assistant",
+          "Technical Responsible",
+          "Your Health"
+        ]
+      }
+    }
   }
 }

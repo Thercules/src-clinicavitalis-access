@@ -1,127 +1,126 @@
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
-  name: "HomeSubFooter"
+  name: "HomeSubFooter",
+  setup() {
+    const { t, locale } = useI18n()
+    const messages = useI18n().messages
+    
+    const getItems = (key) => {
+      const keys = key.split('.')
+      let data = messages.value[locale.value]
+      for (let k of keys) {
+        data = data[k]
+      }
+      return Array.isArray(data) ? data : []
+    }
+    
+    return { 
+      t,
+      getItems
+    }
+  }
 };
 </script>
 
 <template>
   <footer class="sub-footer">
     <div class="sub-footer-container">
-      <!-- Seção Esquerda: Logo e Contato -->
       <div class="footer-section footer-left">
         <div class="footer-logo">
-          <span class="logo-text">Clinica Vitallis</span>
+          <span class="logo-text">{{ t('homeSubFooter.logo') }}</span>
         </div>
         <div class="footer-contact">
           <p class="contact-item">
             <span class="contact-icon">☎️</span>
             <span class="contact-info">
-              <span class="contact-label">Fale com a Dora</span>
-              <span class="contact-number">(21) 2101-2658</span>
+              <span class="contact-label">{{ t('homeSubFooter.contact.dora') }}</span>
+              <span class="contact-number">{{ t('homeSubFooter.contact.doraPhone') }}</span>
             </span>
           </p>
           <p class="contact-item">
             <span class="contact-icon">📞</span>
             <span class="contact-info">
-              <span class="contact-label">Central</span>
-              <span class="contact-number">3003-3230</span>
+              <span class="contact-label">{{ t('homeSubFooter.contact.central') }}</span>
+              <span class="contact-number">{{ t('homeSubFooter.contact.centralPhone') }}</span>
             </span>
           </p>
         </div>
-        <!-- Social Media Icons -->
         <div class="social-media">
-          <a href="#" class="social-icon" title="Facebook" aria-label="Facebook">f</a>
-          <a href="#" class="social-icon" title="LinkedIn" aria-label="LinkedIn">in</a>
-          <a href="#" class="social-icon" title="Instagram" aria-label="Instagram">📷</a>
-          <a href="#" class="social-icon" title="X/Twitter" aria-label="X/Twitter">𝕏</a>
-          <a href="#" class="social-icon" title="WhatsApp" aria-label="WhatsApp">💬</a>
-          <a href="#" class="social-icon" title="YouTube" aria-label="YouTube">▶</a>
+          <a href="#" class="social-icon" :title="t('homeSubFooter.social.facebook')" :aria-label="t('homeSubFooter.social.facebook')">f</a>
+          <a href="#" class="social-icon" :title="t('homeSubFooter.social.linkedin')" :aria-label="t('homeSubFooter.social.linkedin')">in</a>
+          <a href="#" class="social-icon" :title="t('homeSubFooter.social.instagram')" :aria-label="t('homeSubFooter.social.instagram')">📷</a>
+          <a href="#" class="social-icon" :title="t('homeSubFooter.social.twitter')" :aria-label="t('homeSubFooter.social.twitter')">𝕏</a>
+          <a href="#" class="social-icon" :title="t('homeSubFooter.social.whatsapp')" :aria-label="t('homeSubFooter.social.whatsapp')">💬</a>
+          <a href="#" class="social-icon" :title="t('homeSubFooter.social.youtube')" :aria-label="t('homeSubFooter.social.youtube')">▶</a>
         </div>
       </div>
 
-      <!-- Seção Centro: Links de Menu -->
       <div class="footer-section footer-center">
         <div class="footer-column">
-          <h4 class="footer-title">HOME</h4>
+          <h4 class="footer-title">{{ t('homeSubFooter.menu.home.title') }}</h4>
           <ul class="footer-links">
-            <li><a href="#">Para Pacientes</a></li>
-            <li><a href="#">Especialidades</a></li>
-            <li><a href="#">Exames e Procedimentos</a></li>
-            <li><a href="#">Encontre uma Unidade</a></li>
-            <li><a href="#">Encontre um Médico</a></li>
-            <li><a href="#">Marcação de Consultas</a></li>
-            <li><a href="#">Marcação de Exames</a></li>
-            <li><a href="#">Resultado de Exames</a></li>
-            <li><a href="#">Emergências</a></li>
-            <li><a href="#">Planos e Convênios</a></li>
-            <li><a href="#">Programas de Cuidado</a></li>
-            <li><a href="#">Doenças</a></li>
-            <li><a href="#">Vacinas</a></li>
-            <li><a href="#">Transplantes</a></li>
-            <li><a href="#">Patologia Molecular - Testes Genéticos</a></li>
+            <li v-for="(item, index) in getItems('homeSubFooter.menu.home.items')" :key="`home-${index}`">
+              <a href="#">{{ item }}</a>
+            </li>
           </ul>
         </div>
 
         <div class="footer-column">
-          <h4 class="footer-title">Resultado de Exames</h4>
+          <h4 class="footer-title">{{ t('homeSubFooter.menu.exams.title') }}</h4>
           <ul class="footer-links">
-            <li><a href="#">Encontre um Médico</a></li>
-            <li><a href="#">App da Cardiologia D'Or</a></li>
-            <li><a href="#">Auto-agendamento Cirúrgico</a></li>
-            <li><a href="#">Cursos e Palestras</a></li>
+            <li v-for="(item, index) in getItems('homeSubFooter.menu.exams.items')" :key="`exams-${index}`">
+              <a href="#">{{ item }}</a>
+            </li>
           </ul>
 
-          <h4 class="footer-title" style="margin-top: 1.5rem;">Institucional</h4>
+          <h4 class="footer-title" style="margin-top: 1.5rem;">{{ t('homeSubFooter.menu.institutional.title') }}</h4>
           <ul class="footer-links">
-            <li><a href="#">Quem somos</a></li>
-            <li><a href="#">Histórico</a></li>
-            <li><a href="#">Nossas Políticas</a></li>
-            <li><a href="#">Sustentabilidade</a></li>
-            <li><a href="#">Integridade e Ética</a></li>
-            <li><a href="#">Privacidade</a></li>
-            <li><a href="#">Relações com o Investidor</a></li>
-            <li><a href="#">Projetos Sociais</a></li>
-            <li><a href="#">Segurança da Informação</a></li>
+            <li v-for="(item, index) in getItems('homeSubFooter.menu.institutional.items')" :key="`institutional-${index}`">
+              <a href="#">{{ item }}</a>
+            </li>
           </ul>
         </div>
       </div>
 
-      <!-- Seção Direita: Outros Links e Parcerias -->
       <div class="footer-section footer-right">
         <div class="footer-column">
-          <h4 class="footer-title">Especialidades</h4>
+          <h4 class="footer-title">{{ t('homeSubFooter.menu.specialties.title') }}</h4>
           <ul class="footer-links">
-            <li><a href="#">Oncologia D'Or</a></li>
-            <li><a href="#">Rede Star</a></li>
-            <li><a href="#">IDOR</a></li>
-            <li><a href="#">Cardiologia D'Or</a></li>
-            <li><a href="#">Maternidade D'Or</a></li>
+            <li v-for="(item, index) in getItems('homeSubFooter.menu.specialties.items')" :key="`specialties-${index}`">
+              <a href="#">{{ item }}</a>
+            </li>
           </ul>
 
-          <h4 class="footer-title" style="margin-top: 1.5rem;">Parcerias</h4>
+          <h4 class="footer-title" style="margin-top: 1.5rem;">{{ t('homeSubFooter.menu.partnerships.title') }}</h4>
           <ul class="footer-links">
-            <li><a href="#">Conheça nossas Parcerias</a></li>
+            <li v-for="(item, index) in getItems('homeSubFooter.menu.partnerships.items')" :key="`partnerships-${index}`">
+              <a href="#">{{ item }}</a>
+            </li>
           </ul>
 
-          <h4 class="footer-title" style="margin-top: 1.5rem;">Aplicativo Rede D'Or</h4>
+          <h4 class="footer-title" style="margin-top: 1.5rem;">{{ t('homeSubFooter.menu.app.title') }}</h4>
           <ul class="footer-links">
-            <li><a href="#">Contrais de Atendimento</a></li>
+            <li v-for="(item, index) in getItems('homeSubFooter.menu.app.items')" :key="`app-${index}`">
+              <a href="#">{{ item }}</a>
+            </li>
           </ul>
 
-          <h4 class="footer-title" style="margin-top: 1.5rem;">Ouvidoria</h4>
-          <p class="footer-link-text">Ouvidoria</p>
+          <h4 class="footer-title" style="margin-top: 1.5rem;">{{ t('homeSubFooter.menu.ombudsman.title') }}</h4>
+          <p class="footer-link-text">{{ t('homeSubFooter.menu.ombudsman.text') }}</p>
 
-          <h4 class="footer-title" style="margin-top: 1.5rem;">Notícias</h4>
-          <p class="footer-link-text">Notícias</p>
+          <h4 class="footer-title" style="margin-top: 1.5rem;">{{ t('homeSubFooter.menu.news.title') }}</h4>
+          <p class="footer-link-text">{{ t('homeSubFooter.menu.news.text') }}</p>
 
-          <h4 class="footer-title" style="margin-top: 1.5rem;">Imprensa</h4>
-          <p class="footer-link-text">Imprensa</p>
+          <h4 class="footer-title" style="margin-top: 1.5rem;">{{ t('homeSubFooter.menu.press.title') }}</h4>
+          <p class="footer-link-text">{{ t('homeSubFooter.menu.press.text') }}</p>
 
-          <h4 class="footer-title" style="margin-top: 1.5rem;">Trabalhe Conosco</h4>
+          <h4 class="footer-title" style="margin-top: 1.5rem;">{{ t('homeSubFooter.menu.careers.title') }}</h4>
           <ul class="footer-links">
-            <li><a href="#">Dora - Assistente Digital</a></li>
-            <li><a href="#">Responsáveis técnicos</a></li>
-            <li><a href="#">Tua Saúde</a></li>
+            <li v-for="(item, index) in getItems('homeSubFooter.menu.careers.items')" :key="`careers-${index}`">
+              <a href="#">{{ item }}</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -145,7 +144,6 @@ export default {
   gap: 3rem;
 }
 
-/* Seção Esquerda */
 .footer-left {
   display: flex;
   flex-direction: column;
@@ -201,7 +199,6 @@ export default {
   color: #fff;
 }
 
-/* Redes Sociais */
 .social-media {
   display: flex;
   gap: 1rem;
@@ -230,7 +227,6 @@ export default {
   transform: translateY(-3px);
 }
 
-/* Colunas de Links */
 .footer-section {
   display: flex;
   flex-direction: column;
@@ -298,7 +294,6 @@ export default {
   margin: 0;
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
   .sub-footer-container {
     grid-template-columns: 1fr;

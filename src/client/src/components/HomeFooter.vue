@@ -1,6 +1,12 @@
 <script>
+import { useI18n } from 'vue-i18n'
+
 export default {
   name: "HomeFooter",
+  setup() {
+    const { t } = useI18n()
+    return { t }
+  },
   data() {
     return {
       currentYear: new Date().getFullYear()
@@ -13,12 +19,12 @@ export default {
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-copyright">
-        <p>©{{ currentYear }} Clinica Vitallis | TODOS OS DIREITOS RESERVADOS.</p>
+        <p>{{ t('homeFooter.copyright', { year: currentYear }) }}</p>
       </div>
       <div class="footer-links">
-        <a href="#">Aviso de Privacidade</a>
+        <a href="#">{{ t('homeFooter.privacyNotice') }}</a>
         <span class="separator">|</span>
-        <a href="#">Aviso de Cookies</a>
+        <a href="#">{{ t('homeFooter.cookieNotice') }}</a>
       </div>
     </div>
   </footer>
