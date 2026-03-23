@@ -11,7 +11,7 @@ import HomeClinicImageComponent from "./components/HomeClinicImageComponent.vue"
 import HomeDoctorFilterComponent from "./components/HomeDoctorFilterComponent.vue";
 import HomeSubFooter from "./components/HomeSubFooter.vue";
 import HomeFooter from "./components/HomeFooter.vue";
-import HomeLibrasButton from "./components/HomeLibrasButton.vue";
+
 
 export default {
   components: {
@@ -26,7 +26,6 @@ export default {
     HomeDoctorFilterComponent,
     HomeSubFooter,
     HomeFooter,
-    HomeLibrasButton,
   },
   setup() {
     const route = useRoute()
@@ -54,7 +53,6 @@ export default {
     <HomeContactComponent/>
     <HomeSubFooter />
     <HomeFooter />
-    <HomeLibrasButton />
   </div>
 </template>
 
