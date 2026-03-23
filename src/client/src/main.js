@@ -18,7 +18,6 @@ app.mount('#app')
 function loadVLibras() {
   if (window.VLibras) {
     new window.VLibras.Widget('https://vlibras.gov.br/app');
-    console.log('VLibras iniciado 🚀');
     return;
   }
 
@@ -27,7 +26,6 @@ function loadVLibras() {
 
   script.onload = () => {
     new window.VLibras.Widget('https://vlibras.gov.br/app');
-    console.log('VLibras carregado e iniciado 🚀');
   };
 
   document.body.appendChild(script);
