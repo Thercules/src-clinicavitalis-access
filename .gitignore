@@ -10,6 +10,10 @@ build/
 .out/
 coverage/
 
+# Ignorar relatórios de mutação do Stryker
+reports/
+.stryker-tmp/
+
 # Ignorar configurações de ambiente
 .env
 .env.local
