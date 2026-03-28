@@ -1,0 +1,13 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🧪 Executando testes unitários do cliente..."
+cd src/client
+npm run test:unit
+
+if [ $? -ne 0 ]; then
+  echo "❌ Testes falharam! Commit abortado."
+  exit 1
+fi
+
+echo "✅ Testes passaram! Prosseguindo com o commit..."
