@@ -4,7 +4,7 @@ import 'vue3-carousel/dist/carousel.css'
 import { useI18n } from 'vue-i18n'
 
 export default {
-  name: "HomeNews",
+  name: "News",
   components: {
     Carousel,
     Slide,

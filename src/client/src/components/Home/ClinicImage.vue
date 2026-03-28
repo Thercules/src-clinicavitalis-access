@@ -1,29 +1,28 @@
 <script>
 export default {
-  name: "HomeImageComponent",
+  name: "ClinicImage",
 };
 </script>
 
 <template>
-    <section class="home_image">
+    <section class="home_clinic_image">
         <img
-        src="https://i.ibb.co/7JQYnhbN/hospital-image.jpg"
+        src="https://i.ibb.co/nSckHLZ/recepcao-de-clinica-medica.webp"
         alt="Ala médica"
-        class="home_image__img"
+        class="home_clinic_image__img"
         />
     </section>
 </template>
   
 <style scoped>
-.home_image {
+.home_clinic_image {
 position: relative;
 width: 100%;
-height: 300px;
+height: 500px;
 overflow: hidden;
-/* margin-top: calc(60px); */
 }
 
-.home_image__img {
+.home_clinic_image__img {
 width: 100%;
 height: 100%;
 object-fit: cover;

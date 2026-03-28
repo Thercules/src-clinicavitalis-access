@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 
 export default {
-  name: "HomeSubFooter",
+  name: "SubFooter",
   setup() {
     const { t, locale } = useI18n()
     const messages = useI18n().messages

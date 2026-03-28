@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 
 export default {
-  name: "HomeFooter",
+  name: "Footer",
   setup() {
     const { t } = useI18n()
     return { t }

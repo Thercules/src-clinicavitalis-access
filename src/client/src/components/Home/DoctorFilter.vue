@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
 
 export default {
-  name: "HomeDoctorFilterComponent",
+  name: "DoctorFilter",
   setup() {
     const { t } = useI18n()
     const router = useRouter()

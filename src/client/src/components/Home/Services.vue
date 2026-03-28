@@ -2,15 +2,15 @@
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import { useI18n } from 'vue-i18n'
-import HomeServiceInfoComponent from './HomeServiceInfoComponent.vue';
+import ServiceInfo from './ServiceInfo.vue';
 
 export default {
-  name: "HomeServicesComponent",
+  name: "Services",
   components: {
     Carousel,
     Slide,
     Navigation,
-    HomeServiceInfoComponent
+    ServiceInfo
   },
   setup() {
     const { t } = useI18n()
@@ -71,7 +71,7 @@ export default {
       </template>
     </carousel>
 
-    <home-service-info-component ref="serviceInfoComponent" :service="selectedService" />
+    <service-info ref="serviceInfoComponent" :service="selectedService" />
   </section>
 </template>
 

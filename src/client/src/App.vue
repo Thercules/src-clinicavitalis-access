@@ -1,31 +1,32 @@
 <script>
 import { useRoute } from 'vue-router'
-import HomeNavbar from "./components/HomeNavbar.vue";
-import HomeSubTextComponent from "./components/HomeSubTextComponent.vue";
-import HomeImageComponent from "./components/HomeImageComponent.vue";
-import HomeServicesComponent from "./components/HomeServicesComponent.vue";
-import HomeNews from "./components/HomeNews.vue";
-import HomeContactComponent from "./components/HomeContactComponent.vue";
-import HomeSubNavbar from "./components/HomeSubNavbar.vue";
-import HomeClinicImageComponent from "./components/HomeClinicImageComponent.vue";
-import HomeDoctorFilterComponent from "./components/HomeDoctorFilterComponent.vue";
-import HomeSubFooter from "./components/HomeSubFooter.vue";
-import HomeFooter from "./components/HomeFooter.vue";
-
+import Navbar from "./components/Common/Navbar.vue"
+import SubNavbar from "./components/Common/SubNavbar.vue"
+import Footer from "./components/Common/Footer.vue"
+import SubFooter from "./components/Common/SubFooter.vue"
+import ClinicImage from "./components/Home/ClinicImage.vue"
+import Contact from "./components/Home/Contact.vue"
+import DoctorFilter from "./components/Home/DoctorFilter.vue"
+import Image from "./components/Home/Image.vue"
+import News from "./components/Home/News.vue"
+import ServiceInfo from "./components/Home/ServiceInfo.vue"
+import Services from "./components/Home/Services.vue"
+import SubText from "./components/Home/SubText.vue"
 
 export default {
   components: {
-    HomeNavbar,
-    HomeSubTextComponent,
-    HomeClinicImageComponent,
-    HomeImageComponent,
-    HomeServicesComponent,
-    HomeNews,
-    HomeContactComponent,
-    HomeSubNavbar,
-    HomeDoctorFilterComponent,
-    HomeSubFooter,
-    HomeFooter,
+    Navbar,
+    SubNavbar,
+    Footer,
+    SubFooter,
+    ClinicImage,
+    Contact,
+    DoctorFilter,
+    Image,
+    News,
+    ServiceInfo,
+    Services,
+    SubText,
   },
   setup() {
     const route = useRoute()
@@ -42,17 +43,17 @@ export default {
 <template>
   <router-view v-if="isBlankLayout" />
   <div v-else>
-    <HomeNavbar />
-    <HomeSubNavbar/>
-    <HomeDoctorFilterComponent/>
-    <HomeClinicImageComponent />
-    <HomeSubTextComponent />
-    <HomeImageComponent />
-    <HomeServicesComponent/>
-    <HomeNews />
-    <HomeContactComponent/>
-    <HomeSubFooter />
-    <HomeFooter />
+    <Navbar />
+    <SubNavbar/>
+    <DoctorFilter/>
+    <ClinicImage />
+    <SubText />
+    <Image />
+    <Services/>
+    <News />
+    <Contact/>
+    <SubFooter />
+    <Footer />
   </div>
 </template>
 

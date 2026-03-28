@@ -2,7 +2,7 @@
 import { useI18n } from 'vue-i18n'
 
 export default {
-  name: "HomeLanguageSwitcher",
+  name: "LanguageSwitcher",
   setup() {
     const { locale } = useI18n()
     return { locale }
