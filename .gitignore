@@ -1,4 +1,5 @@
-# Ignorar node_modules do BFF e Client
+# Ignorar node_modules do BFF, Client e Raiz
+node_modules/
 src/bff/node_modules/
 src/client/node_modules/
 
