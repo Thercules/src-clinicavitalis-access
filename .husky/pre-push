@@ -1,17 +1,6 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
+cd src/client
 
 echo "🧬 Verificando score de mutação com Stryker..."
-echo "Isso pode levar alguns minutos..."
-
-cd src/client
-npm run test:mutation
-
-if [ $? -ne 0 ]; then
-  echo "❌ Teste de mutação falhou!"
-  exit 1
-fi
-
 npm run test:mutation:check
 
 if [ $? -ne 0 ]; then
