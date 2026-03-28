@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Thercules/src-clinicavitalis-access/issues"
   },
-  "homepage": "https://github.com/Thercules/src-clinicavitalis-access#readme"
+  "homepage": "https://github.com/Thercules/src-clinicavitalis-access#readme",
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
 }

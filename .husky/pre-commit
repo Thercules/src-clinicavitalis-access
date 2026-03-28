@@ -1,0 +1,19 @@
+echo "🧪 Executando testes unitários do cliente..."
+cd src/client
+npm run test:unit
+
+if [ $? -ne 0 ]; then
+  echo "❌ Testes falharam! Commit abortado."
+  exit 1
+fi
+
+echo "✅ Testes passaram! Prosseguindo com o commit..."
+
+echo "🧬 Gerando relatório de mutação com Stryker..."
+echo "Isso pode levar alguns minutos..."
+npm run test:mutation
+
+if [ $? -ne 0 ]; then
+  echo "❌ Teste de mutação falhou!"
+  exit 1
+fi
