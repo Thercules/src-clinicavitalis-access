@@ -13,6 +13,12 @@ dist
 dist-ssr
 coverage
 *.local
+**/__snapshots__/
+
+# Stryker mutation testing
+.stryker-tmp/
+reports/
+stryker-incremental.json
 
 # Environment variables
 .env
