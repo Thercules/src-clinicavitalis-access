@@ -1,11 +1,16 @@
 <script>
 import { useI18n } from 'vue-i18n'
+import { useAuthStore } from '@/stores/auth'
+import { useRouter } from 'vue-router'
 
 export default {
   name: "LoginRegister",
   setup() {
     const { t } = useI18n()
-    return { t }
+    const authStore = useAuthStore()
+    const router = useRouter()
+
+    return { t, authStore, router }
   },
   data() {
     return {
@@ -16,6 +21,11 @@ export default {
       error: "",
       loading: false,
     };
+  },
+  computed: {
+    isAuthenticated() {
+      return this.authStore.isAuthenticated
+    }
   },
   methods: {
     toggleForm() {
@@ -40,20 +50,24 @@ export default {
       this.error = "";
 
       try {
-        // Simular chamada de API
-        await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log(
-          this.isLogin ? "Login realizado" : "Cadastro realizado",
-          { email: this.email }
-        );
-        // Aqui você pode fazer o redirecionamento após sucesso
+        if (this.isLogin) {
+          await this.authStore.login(this.email, this.password);
+          this.router.push('/user-dashboard');
+        } else {
+          this.error = "Funcionalidade de registro ainda não disponível";
+        }
       } catch (err) {
-        this.error = "Erro ao processar a solicitação";
+        this.error = err.response?.data?.message || "Erro ao fazer login. Verifique suas credenciais.";
       } finally {
         this.loading = false;
       }
     },
   },
+  mounted() {
+    if (this.isAuthenticated) {
+      this.router.push('/user-dashboard');
+    }
+  }
 };
 </script>
 

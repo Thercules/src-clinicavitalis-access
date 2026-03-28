@@ -80,10 +80,8 @@ export default {
         return;
       }
       
-      // Salvar dados do médico no localStorage
       localStorage.setItem('selectedDoctor', JSON.stringify(this.selectedDoctor));
       
-      // Navegar para tela de agendamento
       this.router.push('/schedule-consultation');
     },
     
