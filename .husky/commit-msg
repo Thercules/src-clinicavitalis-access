@@ -1,6 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 echo "📋 Validando padrão de commit (Conventional Commits)..."
 
 # Pega a mensagem de commit do arquivo temporário passado pelo git

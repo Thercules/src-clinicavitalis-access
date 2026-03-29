@@ -1,6 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 echo "📋 Validando padrão de commits (Conventional Commits)..."
 
 # Pega todos os commits que serão feitos push
