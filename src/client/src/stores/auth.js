@@ -4,19 +4,13 @@ import { authService } from '@/services/api'
 
 export const useAuthStore = defineStore('auth', () => {
   const user = ref(null)
-  const token = ref(null)
   const isLoading = ref(false)
   const error = ref(null)
 
-  const isAuthenticated = computed(() => token.value !== null)
+  const isAuthenticated = computed(() => user.value !== null)
 
   const initializeAuth = () => {
-    const storedToken = localStorage.getItem('authToken')
     const storedUser = localStorage.getItem('user')
-
-    if (storedToken) {
-      token.value = storedToken
-    }
 
     if (storedUser) {
       try {
@@ -35,20 +29,10 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const response = await authService.login(email, password)
 
-      const responseData = response.data.dados || response.data.data || response.data
-      const tokenData = responseData.token || responseData.access_token || responseData.jwt
+      const userData = response.data.user
 
-      if (!tokenData) {
-        throw new Error('Token não encontrado na resposta do servidor')
-      }
-
-      token.value = tokenData
-      localStorage.setItem('authToken', tokenData)
-
-      const userData = {
-        id: responseData.id || responseData.usuarioId,
-        name: responseData.nome || responseData.name || responseData.userName || 'Usuário',
-        email: responseData.email
+      if (!userData) {
+        throw new Error('Dados do usuário não encontrados na resposta do servidor')
       }
 
       user.value = userData
@@ -73,10 +57,8 @@ export const useAuthStore = defineStore('auth', () => {
     } catch (err) {
       console.warn('Erro ao fazer logout no servidor:', err)
     } finally {
-      token.value = null
       user.value = null
       error.value = null
-      localStorage.removeItem('authToken')
       localStorage.removeItem('user')
       isLoading.value = false
 
@@ -94,7 +76,6 @@ export const useAuthStore = defineStore('auth', () => {
   return {
     // State
     user,
-    token,
     isLoading,
     error,
 

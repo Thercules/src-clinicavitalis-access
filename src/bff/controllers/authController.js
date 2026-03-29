@@ -1,4 +1,23 @@
 const authService = require('../services/authService')
+const config = require('../config/env')
+
+const COOKIE_OPTIONS = {
+  httpOnly: true,
+  secure: config.NODE_ENV === 'production',
+  sameSite: 'strict',
+  maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+}
+
+function normalizeLoginResponse(data) {
+  const responseData = data.dados || data.data || data
+  const token = responseData.token || responseData.access_token || responseData.jwt
+  const user = {
+    id: responseData.id || responseData.usuarioId,
+    name: responseData.nome || responseData.name || responseData.userName || 'Usuário',
+    email: responseData.email
+  }
+  return { token, user }
+}
 
 const authController = {
   login: async (req, res, next) => {
@@ -10,7 +29,14 @@ const authController = {
       }
 
       const data = await authService.login(email, password)
-      res.json(data)
+      const { token, user } = normalizeLoginResponse(data)
+
+      if (!token) {
+        return res.status(502).json({ error: 'Token não encontrado na resposta do servidor' })
+      }
+
+      res.cookie('authToken', token, COOKIE_OPTIONS)
+      res.json({ user })
     } catch (error) {
       next(error)
     }
@@ -20,6 +46,7 @@ const authController = {
     try {
       const token = req.token
       await authService.logout(token)
+      res.clearCookie('authToken', { httpOnly: true, sameSite: 'strict', secure: config.NODE_ENV === 'production' })
       res.json({ message: 'Logout realizado com sucesso' })
     } catch (error) {
       next(error)
@@ -30,7 +57,11 @@ const authController = {
     try {
       const token = req.token
       const data = await authService.refreshToken(token)
-      res.json(data)
+      const { token: newToken } = normalizeLoginResponse(data)
+      if (newToken) {
+        res.cookie('authToken', newToken, COOKIE_OPTIONS)
+      }
+      res.json({ message: 'Token renovado com sucesso' })
     } catch (error) {
       next(error)
     }

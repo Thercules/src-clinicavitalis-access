@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors')
+const cookieParser = require('cookie-parser')
 const config = require('./config/env')
 const errorHandler = require('./middleware/errorHandler')
 
@@ -12,6 +13,7 @@ app.use(cors({
 }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
 
 // Health check
 app.get('/health', (req, res) => {
@@ -28,6 +30,5 @@ app.use(errorHandler)
 const PORT = config.PORT
 app.listen(PORT, () => {
   console.log(`BFF running on port ${PORT}`)
-  console.log(`Backend URL: ${config.BACKEND_URL}`)
   console.log(`Environment: ${config.NODE_ENV}`)
 })
