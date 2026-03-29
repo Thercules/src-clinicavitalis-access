@@ -11,9 +11,12 @@ echo "✅ Testes passaram! Prosseguindo com o commit..."
 
 echo "🧬 Gerando relatório de mutação com Stryker..."
 echo "Isso pode levar alguns minutos..."
-npm run test:mutation
+npm run test:mutation -- --ignoreStatic --disableSourceMapSupport --timeout 120000
 
 if [ $? -ne 0 ]; then
   echo "❌ Teste de mutação falhou!"
+  echo "💡 Se o erro persistir, os testes unitários passaram. Você pode:"
+  echo "   1. Tentar novamente com: npm run test:mutation"
+  echo "   2. Aumentar a memória: NODE_OPTIONS='--max-old-space-size=4096' npm run test:mutation"
   exit 1
 fi

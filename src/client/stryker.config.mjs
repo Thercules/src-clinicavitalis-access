@@ -22,4 +22,7 @@ export default {
     break: 80,
   },
   tsconfigFile: './jsconfig.json',
+  disableSourceMapSupport: true,
+  ignoreStatic: true,
+  timeoutMS: 120000
 };

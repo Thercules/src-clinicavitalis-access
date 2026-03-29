@@ -9,12 +9,16 @@ const COOKIE_OPTIONS = {
 }
 
 function normalizeLoginResponse(data) {  
-  const responseData = data.dados || data.data || data  
+  const responseData = data.dados || data.data || data
+  
+  const usuarioData = responseData.usuario || responseData
+  
   const token = responseData.token || responseData.access_token || responseData.jwt
   const user = {
-    id: responseData.id || responseData.usuarioId,
-    name: responseData.nome_completo || responseData.nome || responseData.name || responseData.userName || 'Usuário',
-    email: responseData.email
+    id: usuarioData.id || usuarioData.usuarioId,
+    name: usuarioData.nome_completo || usuarioData.nome || usuarioData.name || usuarioData.userName || 'Usuário',
+    email: usuarioData.email,
+    accessLevel: (usuarioData.nivel_de_acesso || usuarioData.nivelDeAcesso || 'PACIENTE').toUpperCase()
   }
   return { token, user }
 }

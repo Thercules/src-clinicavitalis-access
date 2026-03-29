@@ -5,7 +5,9 @@
       <div class="navbar-content">
         <div class="navbar-brand">
           <h1>Clínica Vitalis</h1>
-          <span class="badge">Paciente</span>
+          <span :class="['badge', `badge-${(user?.accessLevel || 'PACIENTE').toLowerCase()}`]">
+            {{ getAccessLevelLabel(user?.accessLevel) }}
+          </span>
         </div>
         <div class="navbar-user">
           <span class="user-name">{{ user?.name || 'Usuário' }}</span>
@@ -269,6 +271,17 @@ export default defineComponent({
         this.authStore.logout()
         this.router.push('/login-register')
       }
+    },
+    getAccessLevelLabel(level) {
+      const labels = {
+        'ADM': 'ADM',
+        'GESTOR': 'Gestor',
+        'MEDICO': 'Médico',
+        'ENFERMEIRA': 'Enfermeira',
+        'PACIENTE': 'Paciente',
+        'GM': 'GM'
+      }
+      return labels[level] || 'Paciente'
     }
   },
   mounted() {
@@ -329,6 +342,37 @@ export default defineComponent({
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+/* Badge colors by access level */
+.badge-adm {
+  background-color: rgba(76, 175, 80, 0.8);
+  color: white;
+}
+
+.badge-gestor {
+  background-color: rgba(255, 152, 0, 0.8);
+  color: white;
+}
+
+.badge-medico {
+  background-color: rgba(156, 39, 176, 0.8);
+  color: white;
+}
+
+.badge-enfermeira {
+  background-color: rgba(33, 33, 33, 0.9);
+  color: white;
+}
+
+.badge-paciente {
+  background-color: rgba(0, 61, 165, 0.8);
+  color: white;
+}
+
+.badge-gm {
+  background-color: rgba(211, 47, 47, 0.8);
+  color: white;
 }
 
 .navbar-user {
