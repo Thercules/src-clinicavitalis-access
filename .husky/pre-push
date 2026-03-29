@@ -3,8 +3,8 @@ echo "📋 Validando padrão de commits (Conventional Commits)..."
 # Pega todos os commits que serão feitos push
 COMMITS=$(git log --format=%B origin/HEAD..HEAD 2>/dev/null || git log --format=%B -1 HEAD)
 
-# Padrão: type: message (máx 100 caracteres)
-PATTERN="^(feat|fix|chore|build|ci|docs|style|refactor|perf|test|revert|init|merge|wip):.{1,100}$"
+# Padrão: [TASK-123] type: message  ou  type: message  (máx 100 caracteres)
+PATTERN="^(\[[A-Za-z0-9_]+-[0-9]+\] )?(feat|fix|chore|build|ci|docs|style|refactor|perf|test|revert|init|merge|wip):.{1,150}$"
 
 # Valida cada commit
 while IFS= read -r COMMIT_LINE; do
@@ -16,16 +16,16 @@ while IFS= read -r COMMIT_LINE; do
     if ! echo "$FIRST_LINE" | grep -qE "$PATTERN"; then
       echo "❌ Commit inválido: '$FIRST_LINE'"
       echo ""
-      echo "📋 Padrão esperado: <type>: <message>"
-      echo "   - Máximo 100 caracteres (contando tipo e dois-pontos)"
+      echo "📋 Padrão esperado: [TASK-123] <type>: <message>  ou  <type>: <message>"
+      echo "   - Máximo 150 caracteres (contando tipo e dois-pontos)"
       echo ""
       echo "✅ Tipos válidos:"
       echo "   feat, fix, chore, build, ci, docs, style, refactor, perf, test, revert, init, merge, wip"
       echo ""
       echo "📝 Exemplos:"
       echo "   feat: adjust styles on component"
+      echo "   [CVTI-10503] test: add unit tests for auth service"
       echo "   fix: correct user authentication flow"
-      echo "   chore: update dependencies"
       exit 1
     fi
   fi

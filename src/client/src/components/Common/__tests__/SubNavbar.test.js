@@ -69,4 +69,11 @@ describe('SubNavbar Component', () => {
     
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('should have correct component name', () => {
+    const wrapper = mount(SubNavbar, {
+      global: { plugins: [i18n] }
+    })
+    expect(wrapper.vm.$options.name).toBe('SubNavbar')
+  })
 })

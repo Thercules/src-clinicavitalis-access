@@ -11,9 +11,11 @@ build/
 .out/
 coverage/
 
-# Ignorar relatórios de mutação do Stryker
+# Ignorar relatórios de testes e mutação
 reports/
 .stryker-tmp/
+test_output.txt
+*.log
 
 # Ignorar configurações de ambiente
 .env

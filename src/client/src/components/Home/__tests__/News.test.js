@@ -2,7 +2,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { mount } from '@vue/test-utils'
 import News from '../News.vue'
 import { createI18n } from 'vue-i18n'
-
 // Mock ResizeObserver
 global.ResizeObserver = class ResizeObserver {
   constructor(callback) {}
@@ -96,6 +95,21 @@ describe('News Component', () => {
     expect(wrapper.vm.readMore).toBeDefined()
   })
 
+  it('should have getItems method', () => {
+    const wrapper = mount(News, {
+      global: {
+        plugins: [i18n],
+        stubs: {
+          Carousel: true,
+          Slide: true,
+          Navigation: true
+        }
+      }
+    })
+    
+    expect(wrapper.vm.getItems).toBeDefined()
+  })
+
   it('should use i18n translations', () => {
     const wrapper = mount(News, {
       global: {
@@ -127,7 +141,7 @@ describe('News Component', () => {
     expect(wrapper.vm.$options.name).toBe('News')
   })
 
-  it('should match snapshot', () => {
+  it('should verify getItems returns correct structure', () => {
     const wrapper = mount(News, {
       global: {
         plugins: [i18n],
@@ -139,6 +153,127 @@ describe('News Component', () => {
       }
     })
     
-    expect(wrapper.html()).toMatchSnapshot()
+    const news = wrapper.vm.getItems('homeNews.news')
+    expect(Array.isArray(news)).toBe(true)
+    if (news.length > 0) {
+      expect(news[0].id).toBeDefined()
+      expect(news[0].title).toBeDefined()
+      expect(news[0].excerpt).toBeDefined()
+    }
+  })
+
+  it('should call console.log when readMore is invoked', () => {
+    const wrapper = mount(News, {
+      global: {
+        plugins: [i18n],
+        stubs: {
+          Carousel: true,
+          Slide: true,
+          Navigation: true
+        }
+      }
+    })
+    
+    const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+    wrapper.vm.readMore(1)
+    expect(consoleSpy).toHaveBeenCalledWith('Ler mais sobre notícia:', 1)
+    consoleSpy.mockRestore()
+  })
+
+  it('should mount component with all nested components', () => {
+    const wrapper = mount(News, {
+      global: {
+        plugins: [i18n],
+        stubs: {
+          Carousel: true,
+          Slide: true,
+          Navigation: true
+        }
+      }
+    })
+    
+    expect(wrapper.findComponent({ name: 'Carousel' }).exists()).toBe(true)
+  })
+
+  it('should handle getItems with invalid path gracefully', () => {
+    const wrapper = mount(News, {
+      global: {
+        plugins: [i18n],
+        stubs: {
+          Carousel: true,
+          Slide: true,
+          Navigation: true
+        }
+      }
+    })
+    
+    const result = wrapper.vm.getItems('invalid.path.that.does.not.exist')
+    expect(result).toBeDefined()
+  })
+
+  it('should return exact empty array for invalid path', () => {
+    const wrapper = mount(News, {
+      global: {
+        plugins: [i18n],
+        stubs: { Carousel: true, Slide: true, Navigation: true }
+      }
+    })
+    const result = wrapper.vm.getItems('nonexistent.deep.path')
+    expect(result).toEqual([])
+  })
+
+  it('should return actual news items using dot-separated path', () => {
+    const wrapper = mount(News, {
+      global: {
+        plugins: [i18n],
+        stubs: { Carousel: true, Slide: true, Navigation: true }
+      }
+    })
+    const news = wrapper.vm.getItems('homeNews.news')
+    expect(Array.isArray(news)).toBe(true)
+    expect(news.length).toBe(1)
+    expect(news[0].id).toBe(1)
+    expect(news[0].title).toBe('News 1')
+    expect(news[0].excerpt).toBe('Excerpt 1')
+  })
+
+  it('should traverse nested path correctly to return array', () => {
+    const wrapper = mount(News, {
+      global: {
+        plugins: [i18n],
+        stubs: { Carousel: true, Slide: true, Navigation: true }
+      }
+    })
+    // If split separator was '' (empty string), 'homeNews.news' would split into
+    // individual characters and not find the right nested keys
+    const result = wrapper.vm.getItems('homeNews.news')
+    expect(result).not.toEqual([])
+    expect(result[0].category).toBe('Health')
+  })
+
+  it('should have Carousel Slide Navigation components registered', () => {
+    expect(News.components).toBeDefined()
+    expect(Object.keys(News.components).length).toBeGreaterThan(0)
+    expect(News.components.Carousel).toBeDefined()
+    expect(News.components.Slide).toBeDefined()
+    expect(News.components.Navigation).toBeDefined()
+  })
+
+  it('should log to console with correct message format', () => {
+    const wrapper = mount(News, {
+      global: {
+        plugins: [i18n],
+        stubs: {
+          Carousel: true,
+          Slide: true,
+          Navigation: true
+        }
+      }
+    })
+    
+    const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+    wrapper.vm.readMore(5)
+    expect(consoleSpy).toHaveBeenCalled()
+    consoleSpy.mockRestore()
   })
 })

@@ -74,4 +74,8 @@ describe('LanguageSwitcher Component', () => {
     expect(buttons[0].classes()).not.toContain('active')
     expect(buttons[1].classes()).toContain('active')
   })
+
+  it('should have correct component name', () => {
+    expect(LanguageSwitcher.name).toBe('LanguageSwitcher')
+  })
 })
