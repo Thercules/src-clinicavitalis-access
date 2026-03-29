@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     readMore(newsId) {
-      console.log('Ler mais sobre notícia:', newsId)
+      // Navegar para página de detalhes da notícia
     }
   }
 }

@@ -84,14 +84,6 @@ export default {
       
       this.router.push('/schedule-consultation');
     },
-    
-    search() {
-      console.log("Buscando doutores:", {
-        especialidade: this.selectedSpecialty,
-        localizacao: this.selectedLocation,
-        genero: this.selectedGender,
-      });
-    },
   },
 };
 </script>

@@ -29,7 +29,8 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const response = await authService.login(email, password)
 
-      const userData = response.data.user
+      // O token está nos cookies httpOnly, então o BFF retorna apenas o user
+      const userData = response.data?.user
 
       if (!userData) {
         throw new Error('Dados do usuário não encontrados na resposta do servidor')
@@ -55,7 +56,7 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       await authService.logout()
     } catch (err) {
-      console.warn('Erro ao fazer logout no servidor:', err)
+      // Erro ao fazer logout no servidor
     } finally {
       user.value = null
       error.value = null

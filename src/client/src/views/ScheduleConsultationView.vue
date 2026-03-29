@@ -95,10 +95,7 @@ export default {
         
         this.availableDates = mockAvailableDates;
         this.lastAvailableDate = '2026-03-14';
-        
-        console.log("Datas disponíveis carregadas:", this.availableDates);
       } catch (err) {
-        console.error("Erro ao buscar datas disponíveis:", err);
         this.error = "Erro ao carregar datas disponíveis";
       } finally {
         this.loading = false;
@@ -157,22 +154,12 @@ export default {
           timestamp: new Date().toISOString()
         };
         
-        // Console log conforme requisição
-        console.log("=== AGENDAMENTO DE CONSULTA ===");
-        console.log("Médico:", this.selectedDoctor.name);
-        console.log("Especialidade:", this.selectedDoctor.specialty);
-        console.log("Data Selecionada:", this.formatDateDisplay(this.selectedDate));
-        console.log("Hora da Consulta:", this.selectedTime);
-        console.log("Dados Completos:", consultationData);
-        console.log("==============================");
-        
         // Simular envio de requisição POST
         await new Promise(resolve => setTimeout(resolve, 500));
         
         // Mostrar popup de confirmação
         this.showConfirmationPopup = true;
       } catch (err) {
-        console.error("Erro ao agendar consulta:", err);
         this.error = "Erro ao agendar a consulta";
       } finally {
         this.loading = false;

@@ -218,18 +218,14 @@ describe('Auth Store', () => {
     it('should handle logout service error gracefully', async () => {
       const logoutError = new Error('Server error')
       authService.logout.mockRejectedValue(logoutError)
-      const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
 
       const store = useAuthStore()
       store.user = { id: 1, name: 'Test User' }
 
       await store.logout()
 
-      expect(warnSpy).toHaveBeenCalledWith('Erro ao fazer logout no servidor:', logoutError)
       expect(store.user).toBeNull()
       expect(window.location.href).toBe('/login-register')
-
-      warnSpy.mockRestore()
     })
 
     it('should clear user from localStorage on logout', async () => {
