@@ -18,7 +18,11 @@ export default {
       const keys = key.split('.')
       let data = messages.value[locale.value]
       for (let k of keys) {
-        data = data[k]
+        if (data && typeof data === 'object') {
+          data = data[k]
+        } else {
+          return []
+        }
       }
       return Array.isArray(data) ? data : []
     }

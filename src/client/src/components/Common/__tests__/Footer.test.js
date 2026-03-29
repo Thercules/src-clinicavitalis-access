@@ -60,4 +60,8 @@ describe('Footer Component', () => {
     
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('should have correct component name', () => {
+    expect(Footer.name).toBe('Footer')
+  })
 })

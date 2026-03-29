@@ -165,4 +165,11 @@ describe('ServiceInfo Component', () => {
     
     expect(wrapper.html()).toMatchSnapshot()
   })
+
+  it('should have service prop defined as required Object', () => {
+    expect(ServiceInfo.props).toBeDefined()
+    expect(ServiceInfo.props.service).toBeDefined()
+    expect(ServiceInfo.props.service.type).toBe(Object)
+    expect(ServiceInfo.props.service.required).toBe(true)
+  })
 })
