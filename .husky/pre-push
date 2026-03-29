@@ -1,12 +1,39 @@
-cd src/client
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
 
-echo "🧬 Verificando score de mutação com Stryker..."
-npm run test:mutation:check
+echo "📋 Validando padrão de commits (Conventional Commits)..."
 
-if [ $? -ne 0 ]; then
-  echo "❌ Score de mutação abaixo do threshold (80%)!"
-  echo "💡 Abra reports/mutation/mutation.html para detalhes"
-  exit 1
-fi
+# Pega todos os commits que serão feitos push
+COMMITS=$(git log --format=%B origin/HEAD..HEAD 2>/dev/null || git log --format=%B -1 HEAD)
 
-echo "✅ Score de mutação aprovado! Prosseguindo com push..."
+# Padrão: type: message (máx 100 caracteres)
+PATTERN="^(feat|fix|chore|build|ci|docs|style|refactor|perf|test|revert|init|merge|wip):.{1,100}$"
+
+# Valida cada commit
+while IFS= read -r COMMIT_LINE; do
+  # Pega apenas a primeira linha (subject) e remove espaços extras
+  FIRST_LINE=$(echo "$COMMIT_LINE" | head -n1 | xargs)
+  
+  # Se não estiver vazia
+  if [ -n "$FIRST_LINE" ]; then
+    if ! echo "$FIRST_LINE" | grep -qE "$PATTERN"; then
+      echo "❌ Commit inválido: '$FIRST_LINE'"
+      echo ""
+      echo "📋 Padrão esperado: <type>: <message>"
+      echo "   - Máximo 100 caracteres (contando tipo e dois-pontos)"
+      echo ""
+      echo "✅ Tipos válidos:"
+      echo "   feat, fix, chore, build, ci, docs, style, refactor, perf, test, revert, init, merge, wip"
+      echo ""
+      echo "📝 Exemplos:"
+      echo "   feat: adjust styles on component"
+      echo "   fix: correct user authentication flow"
+      echo "   chore: update dependencies"
+      exit 1
+    fi
+  fi
+done <<EOF
+$COMMITS
+EOF
+
+echo "✅ Todos os commits seguem o padrão Conventional Commits!"

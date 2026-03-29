@@ -1,0 +1,33 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "📋 Validando padrão de commit (Conventional Commits)..."
+
+# Pega a mensagem de commit do arquivo temporário passado pelo git
+COMMIT_MSG=$(cat "$1")
+
+# Pega apenas a primeira linha (subject)
+FIRST_LINE=$(echo "$COMMIT_MSG" | head -n1)
+
+# Padrão: type: message (máx 100 caracteres)
+PATTERN="^(feat|fix|chore|build|ci|docs|style|refactor|perf|test|revert|init|merge|wip):.{1,100}$"
+
+if ! echo "$FIRST_LINE" | grep -qE "$PATTERN"; then
+  echo "❌ Commit rejeitado! Mensagem inválida: '$FIRST_LINE'"
+  echo ""
+  echo "📋 Padrão esperado: <type>: <message>"
+  echo "   - Máximo 100 caracteres (contando tipo e dois-pontos)"
+  echo ""
+  echo "✅ Tipos válidos:"
+  echo "   feat, fix, chore, build, ci, docs, style, refactor, perf, test, revert, init, merge, wip"
+  echo ""
+  echo "📝 Exemplos:"
+  echo "   feat: adjust styles on component"
+  echo "   fix: correct user authentication flow"
+  echo "   chore: update dependencies"
+  echo "   test: add unit tests for auth service"
+  echo ""
+  exit 1
+fi
+
+echo "✅ Mensagem de commit validada!"
