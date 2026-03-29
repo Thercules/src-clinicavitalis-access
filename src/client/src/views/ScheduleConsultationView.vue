@@ -78,13 +78,7 @@ export default {
     async fetchAvailableDates() {
       try {
         this.loading = true;
-        
-        // Simular requisição GET para buscar datas livres
-        // Em produção, seria algo como:
-        // const response = await fetch(`/api/doctors/${this.selectedDoctor.id}/available-dates`);
-        // const data = await response.json();
-        
-        // Mock data: médico está livre de 10 a 14 de março de 2026
+
         const mockAvailableDates = [
           '2026-03-10',
           '2026-03-11',
@@ -146,7 +140,6 @@ export default {
       this.loading = true;
       
       try {
-        // Preparar dados para envio
         const consultationData = {
           doctor: this.selectedDoctor,
           date: this.selectedDate,
@@ -154,10 +147,8 @@ export default {
           timestamp: new Date().toISOString()
         };
         
-        // Simular envio de requisição POST
         await new Promise(resolve => setTimeout(resolve, 500));
         
-        // Mostrar popup de confirmação
         this.showConfirmationPopup = true;
       } catch (err) {
         this.error = "Erro ao agendar a consulta";
@@ -168,8 +159,7 @@ export default {
     
     closePopup() {
       this.showConfirmationPopup = false;
-      // Redirecionar para home após fechar popup
-      this.router.push('/');
+      this.$router.push('/');
     },
   },
   mounted() {

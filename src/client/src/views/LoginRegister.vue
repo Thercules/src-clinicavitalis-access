@@ -45,7 +45,6 @@ export default {
     },
     async handleSubmit() {
       if (this.isLogin) {
-        // Validação para Login
         if (!this.email || !this.password) {
           this.error = "Preencha todos os campos obrigatórios";
           return;
@@ -63,7 +62,6 @@ export default {
           this.loading = false;
         }
       } else {
-        // Validação para Registro
         if (
           !this.email ||
           !this.password ||
@@ -86,8 +84,7 @@ export default {
         this.error = "";
 
         try {
-          // Chamada para API de registro
-          const response = await fetch('http://localhost:8080/api/auth/register', {
+          const response = await fetch('http://localhost:3001/api/auth/register', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -109,7 +106,6 @@ export default {
             return;
           }
 
-          // Sucesso no registro - fazer login automático
           try {
             await this.authStore.login(this.email, this.password);
             this.router.push('/user-dashboard');

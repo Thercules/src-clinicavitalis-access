@@ -29,7 +29,6 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const response = await authService.login(email, password)
 
-      // O token está nos cookies httpOnly, então o BFF retorna apenas o user
       const userData = response.data?.user
 
       if (!userData) {
@@ -56,7 +55,6 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       await authService.logout()
     } catch (err) {
-      // Erro ao fazer logout no servidor
     } finally {
       user.value = null
       error.value = null
@@ -67,23 +65,15 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  /**
-   * Limpar mensagem de erro
-   */
   const clearError = () => {
     error.value = null
   }
 
   return {
-    // State
     user,
     isLoading,
     error,
-
-    // Computed
     isAuthenticated,
-
-    // Actions
     login,
     logout,
     initializeAuth,

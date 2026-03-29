@@ -34,7 +34,6 @@ export default {
   },
   methods: {
     readMore(newsId) {
-      // Navegar para página de detalhes da notícia
     }
   }
 }

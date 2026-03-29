@@ -195,7 +195,7 @@ describe('Navbar Component', () => {
     await wrapper.vm.$nextTick()
 
     focusMock.mockClear()
-    wrapper.vm.toggleSearch() // closes search
+    wrapper.vm.toggleSearch()
     await wrapper.vm.$nextTick()
     await wrapper.vm.$nextTick()
 
