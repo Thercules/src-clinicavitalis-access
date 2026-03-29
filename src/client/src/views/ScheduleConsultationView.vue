@@ -78,13 +78,7 @@ export default {
     async fetchAvailableDates() {
       try {
         this.loading = true;
-        
-        // Simular requisição GET para buscar datas livres
-        // Em produção, seria algo como:
-        // const response = await fetch(`/api/doctors/${this.selectedDoctor.id}/available-dates`);
-        // const data = await response.json();
-        
-        // Mock data: médico está livre de 10 a 14 de março de 2026
+
         const mockAvailableDates = [
           '2026-03-10',
           '2026-03-11',
@@ -95,10 +89,7 @@ export default {
         
         this.availableDates = mockAvailableDates;
         this.lastAvailableDate = '2026-03-14';
-        
-        console.log("Datas disponíveis carregadas:", this.availableDates);
       } catch (err) {
-        console.error("Erro ao buscar datas disponíveis:", err);
         this.error = "Erro ao carregar datas disponíveis";
       } finally {
         this.loading = false;
@@ -149,7 +140,6 @@ export default {
       this.loading = true;
       
       try {
-        // Preparar dados para envio
         const consultationData = {
           doctor: this.selectedDoctor,
           date: this.selectedDate,
@@ -157,22 +147,10 @@ export default {
           timestamp: new Date().toISOString()
         };
         
-        // Console log conforme requisição
-        console.log("=== AGENDAMENTO DE CONSULTA ===");
-        console.log("Médico:", this.selectedDoctor.name);
-        console.log("Especialidade:", this.selectedDoctor.specialty);
-        console.log("Data Selecionada:", this.formatDateDisplay(this.selectedDate));
-        console.log("Hora da Consulta:", this.selectedTime);
-        console.log("Dados Completos:", consultationData);
-        console.log("==============================");
-        
-        // Simular envio de requisição POST
         await new Promise(resolve => setTimeout(resolve, 500));
         
-        // Mostrar popup de confirmação
         this.showConfirmationPopup = true;
       } catch (err) {
-        console.error("Erro ao agendar consulta:", err);
         this.error = "Erro ao agendar a consulta";
       } finally {
         this.loading = false;
@@ -181,8 +159,7 @@ export default {
     
     closePopup() {
       this.showConfirmationPopup = false;
-      // Redirecionar para home após fechar popup
-      this.router.push('/');
+      this.$router.push('/');
     },
   },
   mounted() {

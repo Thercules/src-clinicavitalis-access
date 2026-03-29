@@ -10,6 +10,15 @@ const authService = {
     }
   },
 
+  register: async (registerData) => {
+    try {
+      const response = await backendClient.post('/api/auth/register', registerData)
+      return response.data
+    } catch (error) {
+      throw error
+    }
+  },
+
   logout: async (token) => {
     try {
       await backendClient.post('/api/auth/logout', {}, {

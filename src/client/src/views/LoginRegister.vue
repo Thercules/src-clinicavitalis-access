@@ -18,6 +18,10 @@ export default {
       email: "",
       password: "",
       confirmPassword: "",
+      nomeCompleto: "",
+      telefone: "",
+      cpf: "",
+      nivelDeAcesso: "PACIENTE",
       error: "",
       loading: false,
     };
@@ -34,32 +38,85 @@ export default {
       this.email = "";
       this.password = "";
       this.confirmPassword = "";
+      this.nomeCompleto = "";
+      this.telefone = "";
+      this.cpf = "";
+      this.nivelDeAcesso = "PACIENTE";
     },
     async handleSubmit() {
-      if (!this.email || !this.password) {
-        this.error = "Preencha todos os campos obrigatórios";
-        return;
-      }
+      if (this.isLogin) {
+        if (!this.email || !this.password) {
+          this.error = "Preencha todos os campos obrigatórios";
+          return;
+        }
 
-      if (!this.isLogin && this.password !== this.confirmPassword) {
-        this.error = "As senhas não correspondem";
-        return;
-      }
+        this.loading = true;
+        this.error = "";
 
-      this.loading = true;
-      this.error = "";
-
-      try {
-        if (this.isLogin) {
+        try {
           await this.authStore.login(this.email, this.password);
           this.router.push('/user-dashboard');
-        } else {
-          this.error = "Funcionalidade de registro ainda não disponível";
+        } catch (err) {
+          this.error = err.response?.data?.message || "Erro ao fazer login. Verifique suas credenciais.";
+        } finally {
+          this.loading = false;
         }
-      } catch (err) {
-        this.error = err.response?.data?.message || "Erro ao fazer login. Verifique suas credenciais.";
-      } finally {
-        this.loading = false;
+      } else {
+        if (
+          !this.email ||
+          !this.password ||
+          !this.confirmPassword ||
+          !this.nomeCompleto ||
+          !this.telefone ||
+          !this.cpf ||
+          !this.nivelDeAcesso
+        ) {
+          this.error = "Preencha todos os campos obrigatórios";
+          return;
+        }
+
+        if (this.password !== this.confirmPassword) {
+          this.error = "As senhas não correspondem";
+          return;
+        }
+
+        this.loading = true;
+        this.error = "";
+
+        try {
+          const response = await fetch('http://localhost:3001/api/auth/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              email: this.email,
+              password: this.password,
+              confirmPassword: this.confirmPassword,
+              nome_completo: this.nomeCompleto,
+              telefone: this.telefone,
+              cpf: this.cpf,
+              nivel_de_acesso: this.nivelDeAcesso.toLowerCase(),
+            }),
+          });
+
+          if (!response.ok) {
+            const data = await response.json();
+            this.error = data.message || data.error || "Erro ao registrar. Tente novamente.";
+            return;
+          }
+
+          try {
+            await this.authStore.login(this.email, this.password);
+            this.router.push('/user-dashboard');
+          } catch (loginErr) {
+            this.error = loginErr.message || "Cadastro realizado, mas erro ao fazer login automático. Faça login manualmente.";
+          }
+        } catch (err) {
+          this.error = err.message || "Erro ao registrar. Verifique os dados.";
+        } finally {
+          this.loading = false;
+        }
       }
     },
   },
@@ -145,6 +202,42 @@ export default {
               />
             </div>
 
+            <div v-if="!isLogin" class="form-group">
+              <label for="nomeCompleto">Nome Completo</label>
+              <input
+                v-model="nomeCompleto"
+                type="text"
+                id="nomeCompleto"
+                placeholder="Seu nome completo"
+                required
+                :disabled="loading"
+              />
+            </div>
+
+            <div v-if="!isLogin" class="form-group">
+              <label for="telefone">Telefone</label>
+              <input
+                v-model="telefone"
+                type="tel"
+                id="telefone"
+                placeholder="(11) 98765-4321"
+                required
+                :disabled="loading"
+              />
+            </div>
+
+            <div v-if="!isLogin" class="form-group">
+              <label for="cpf">CPF</label>
+              <input
+                v-model="cpf"
+                type="text"
+                id="cpf"
+                placeholder="123.456.789-09"
+                required
+                :disabled="loading"
+              />
+            </div>
+
             <button 
               type="submit" 
               class="submit-btn"
@@ -199,7 +292,7 @@ export default {
   width: 90%;
   max-width: 1000px;
   height: auto;
-  max-height: 600px;
+  max-height: none;
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);

@@ -50,7 +50,6 @@ export default {
     },
     selectDoctor(doctor) {
       this.searchQuery = doctor.name;
-      console.log("Doutor selecionado:", doctor);
       this.searchOpen = false;
     },
     closeSearch() {

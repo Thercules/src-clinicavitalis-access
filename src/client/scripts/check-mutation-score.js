@@ -20,7 +20,6 @@ try {
 
   const report = JSON.parse(fs.readFileSync(REPORT_PATH, 'utf-8'))
   
-  // Calcula o score de mutação
   const metrics = report.metrics || report.thresholds || {}
   const mutationScore = metrics.mutationScore || metrics.score || 0
 

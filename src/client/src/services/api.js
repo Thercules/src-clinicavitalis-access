@@ -34,16 +34,13 @@ api.interceptors.response.use(
 )
 
 export const authService = {
-  login: (email, password) => api.post('/auth/login', { email, password }),
+  login: (email, password) => {
+    return api.post('/auth/login', { email, password })
+  },
   logout: () => api.post('/auth/logout'),
   refreshToken: () => api.post('/auth/refresh')
 }
 
-export const userService = {
-  // getProfile: () => api.get('/user/profile'),
-  // getExams: () => api.get('/user/exams'),
-  // getConsultations: () => api.get('/user/consultations'),
-  // downloadExam: (examId) => api.get(`/user/exams/${examId}/download`, { responseType: 'blob' })
-}
+export const userService = {}
 
 export default api

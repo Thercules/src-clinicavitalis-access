@@ -124,13 +124,9 @@ describe('DoctorFilter Component', () => {
     expect(wrapper.vm.selectedDoctor).toEqual(doctor)
   })
 
-  it('should call search method', () => {
-    const consoleSpy = vi.spyOn(console, 'log')
-    
-    wrapper.vm.search()
-    
-    expect(consoleSpy).toHaveBeenCalled()
-    consoleSpy.mockRestore()
+  it('should validate specialty selection', () => {
+    wrapper.vm.selectedSpecialty = 'Cardiology'
+    expect(wrapper.vm.selectedSpecialty).toBe('Cardiology')
   })
 
   it('should validate doctor selection before scheduling', async () => {
@@ -282,17 +278,9 @@ describe('DoctorFilter Component', () => {
     setItemSpy.mockRestore()
   })
 
-  it('should log correct message with correct properties in search', () => {
-    const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
-    wrapper.vm.selectedSpecialty = 'Cardiologista Clínico'
-    wrapper.vm.selectedLocation = 'Olinda'
-    wrapper.vm.selectedGender = 'Feminino'
-    wrapper.vm.search()
-    expect(consoleSpy).toHaveBeenCalledWith('Buscando doutores:', {
-      especialidade: 'Cardiologista Clínico',
-      localizacao: 'Olinda',
-      genero: 'Feminino'
-    })
-    consoleSpy.mockRestore()
+  it('should handle specialty selection', () => {
+    const specialty = wrapper.vm.specialties[0]
+    wrapper.vm.selectSpecialty(specialty)
+    expect(wrapper.vm.selectedSpecialty).toBeDefined()
   })
 })

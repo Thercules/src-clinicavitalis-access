@@ -29,7 +29,7 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const response = await authService.login(email, password)
 
-      const userData = response.data.user
+      const userData = response.data?.user
 
       if (!userData) {
         throw new Error('Dados do usuário não encontrados na resposta do servidor')
@@ -55,7 +55,6 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       await authService.logout()
     } catch (err) {
-      console.warn('Erro ao fazer logout no servidor:', err)
     } finally {
       user.value = null
       error.value = null
@@ -66,23 +65,15 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  /**
-   * Limpar mensagem de erro
-   */
   const clearError = () => {
     error.value = null
   }
 
   return {
-    // State
     user,
     isLoading,
     error,
-
-    // Computed
     isAuthenticated,
-
-    // Actions
     login,
     logout,
     initializeAuth,

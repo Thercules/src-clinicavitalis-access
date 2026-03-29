@@ -170,12 +170,11 @@ describe('Navbar Component', () => {
     expect(wrapper.vm.searchOpen).toBe(false)
   })
 
-  it('should log correct message with doctor object when selectDoctor is called', () => {
-    const consoleSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+  it('should set searchQuery when selectDoctor is called', () => {
     const doctor = wrapper.vm.doctors[0]
     wrapper.vm.selectDoctor(doctor)
-    expect(consoleSpy).toHaveBeenCalledWith('Doutor selecionado:', doctor)
-    consoleSpy.mockRestore()
+    expect(wrapper.vm.searchQuery).toBe(doctor.name)
+    expect(wrapper.vm.searchOpen).toBe(false)
   })
 
   it('should focus input when search opens via toggleSearch', async () => {
@@ -196,7 +195,7 @@ describe('Navbar Component', () => {
     await wrapper.vm.$nextTick()
 
     focusMock.mockClear()
-    wrapper.vm.toggleSearch() // closes search
+    wrapper.vm.toggleSearch()
     await wrapper.vm.$nextTick()
     await wrapper.vm.$nextTick()
 
