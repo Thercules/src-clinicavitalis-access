@@ -38,6 +38,17 @@ const authService = {
     } catch (error) {
       throw error
     }
+  },
+
+  registerWithAccessLevel: async (registerData, token) => {
+    try {
+      const response = await backendClient.post('/api/auth/register-with-access-level', registerData, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      return response.data
+    } catch (error) {
+      throw error
+    }
   }
 }
 

@@ -103,6 +103,55 @@ const authController = {
     }
   },
 
+  registerWithAccessLevel: async (req, res, next) => {
+    try {
+      const token = req.token
+      const {
+        email,
+        password,
+        confirmPassword,
+        nome_completo,
+        telefone,
+        cpf,
+        nivel_de_acesso
+      } = req.body
+
+      if (!email || !password || !confirmPassword || !nome_completo || !telefone || !nivel_de_acesso) {
+        return res.status(400).json({
+          error: 'Email, senha, nome completo, telefone e nível de acesso são obrigatórios'
+        })
+      }
+
+      if (password !== confirmPassword) {
+        return res.status(400).json({ error: 'As senhas não correspondem' })
+      }
+
+      if (password.length < 6) {
+        return res.status(400).json({ error: 'Senha deve ter no mínimo 6 caracteres' })
+      }
+
+      const registerData = {
+        email,
+        password,
+        confirmPassword,
+        nome_completo,
+        telefone,
+        cpf,
+        nivel_de_acesso
+      }
+
+      const data = await authService.registerWithAccessLevel(registerData, token)
+
+      res.status(201).json({
+        sucesso: data.sucesso,
+        mensagem: data.mensagem,
+        dados: data.dados
+      })
+    } catch (error) {
+      next(error)
+    }
+  },
+
   logout: async (req, res, next) => {
     try {
       const token = req.token
