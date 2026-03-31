@@ -22,6 +22,7 @@ height: 500px;
 overflow: hidden;
 }
 
+/* Estilo para a imagem */
 .home_clinic_image__img {
 width: 100%;
 height: 100%;
