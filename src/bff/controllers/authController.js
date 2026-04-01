@@ -9,12 +9,16 @@ const COOKIE_OPTIONS = {
 }
 
 function normalizeLoginResponse(data) {  
-  const responseData = data.dados || data.data || data  
+  const responseData = data.dados || data.data || data
+  
+  const usuarioData = responseData.usuario || responseData
+  
   const token = responseData.token || responseData.access_token || responseData.jwt
   const user = {
-    id: responseData.id || responseData.usuarioId,
-    name: responseData.nome_completo || responseData.nome || responseData.name || responseData.userName || 'Usuário',
-    email: responseData.email
+    id: usuarioData.id || usuarioData.usuarioId,
+    name: usuarioData.nome_completo || usuarioData.nome || usuarioData.name || usuarioData.userName || 'Usuário',
+    email: usuarioData.email,
+    accessLevel: (usuarioData.nivel_de_acesso || usuarioData.nivelDeAcesso || 'PACIENTE').toUpperCase()
   }
   return { token, user }
 }
@@ -94,6 +98,55 @@ const authController = {
 
       res.cookie('authToken', token, COOKIE_OPTIONS)
       res.json({ user })
+    } catch (error) {
+      next(error)
+    }
+  },
+
+  registerWithAccessLevel: async (req, res, next) => {
+    try {
+      const token = req.token
+      const {
+        email,
+        password,
+        confirmPassword,
+        nome_completo,
+        telefone,
+        cpf,
+        nivel_de_acesso
+      } = req.body
+
+      if (!email || !password || !confirmPassword || !nome_completo || !telefone || !nivel_de_acesso) {
+        return res.status(400).json({
+          error: 'Email, senha, nome completo, telefone e nível de acesso são obrigatórios'
+        })
+      }
+
+      if (password !== confirmPassword) {
+        return res.status(400).json({ error: 'As senhas não correspondem' })
+      }
+
+      if (password.length < 6) {
+        return res.status(400).json({ error: 'Senha deve ter no mínimo 6 caracteres' })
+      }
+
+      const registerData = {
+        email,
+        password,
+        confirmPassword,
+        nome_completo,
+        telefone,
+        cpf,
+        nivel_de_acesso
+      }
+
+      const data = await authService.registerWithAccessLevel(registerData, token)
+
+      res.status(201).json({
+        sucesso: data.sucesso,
+        mensagem: data.mensagem,
+        dados: data.dados
+      })
     } catch (error) {
       next(error)
     }

@@ -5,7 +5,9 @@
       <div class="navbar-content">
         <div class="navbar-brand">
           <h1>Clínica Vitalis</h1>
-          <span class="badge">Paciente</span>
+          <span :class="['badge', `badge-${(user?.accessLevel || 'PACIENTE').toLowerCase()}`]">
+            {{ getAccessLevelLabel(user?.accessLevel) }}
+          </span>
         </div>
         <div class="navbar-user">
           <span class="user-name">{{ user?.name || 'Usuário' }}</span>
@@ -13,6 +15,22 @@
         </div>
       </div>
     </nav>
+
+    <!-- GM Exclusive Area -->
+    <div v-if="user?.accessLevel === 'GM'" class="gm-panel">
+      <div class="gm-panel-content">
+        <div class="gm-panel-info">
+          <span class="gm-crown">👑</span>
+          <div>
+            <h2>Painel Game Master</h2>
+            <p>Área restrita — gerencie usuários e níveis de acesso do sistema</p>
+          </div>
+        </div>
+        <button class="gm-register-btn" @click="router.push('/user-level-register')">
+          + Registrar Novo Usuário
+        </button>
+      </div>
+    </div>
 
     <!-- Main Content -->
     <div class="dashboard-content">
@@ -269,6 +287,17 @@ export default defineComponent({
         this.authStore.logout()
         this.router.push('/login-register')
       }
+    },
+    getAccessLevelLabel(level) {
+      const labels = {
+        'ADM': 'ADM',
+        'GESTOR': 'Gestor',
+        'MEDICO': 'Médico',
+        'ENFERMEIRA': 'Enfermeira',
+        'PACIENTE': 'Paciente',
+        'GM': 'GM'
+      }
+      return labels[level] || 'Paciente'
     }
   },
   mounted() {
@@ -329,6 +358,37 @@ export default defineComponent({
   border-radius: 20px;
   font-size: 0.85rem;
   font-weight: 600;
+}
+
+/* Badge colors by access level */
+.badge-adm {
+  background-color: rgba(76, 175, 80, 0.8);
+  color: white;
+}
+
+.badge-gestor {
+  background-color: rgba(255, 152, 0, 0.8);
+  color: white;
+}
+
+.badge-medico {
+  background-color: rgba(156, 39, 176, 0.8);
+  color: white;
+}
+
+.badge-enfermeira {
+  background-color: rgba(33, 33, 33, 0.9);
+  color: white;
+}
+
+.badge-paciente {
+  background-color: rgba(0, 61, 165, 0.8);
+  color: white;
+}
+
+.badge-gm {
+  background-color: rgba(211, 47, 47, 0.8);
+  color: white;
 }
 
 .navbar-user {
@@ -595,8 +655,81 @@ export default defineComponent({
   font-size: 1.1rem;
 }
 
+/* GM Panel */
+.gm-panel {
+  background: linear-gradient(135deg, #b71c1c 0%, #d32f2f 100%);
+  color: white;
+  padding: 1.25rem 0;
+  border-bottom: 3px solid #7f0000;
+}
+
+.gm-panel-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.gm-panel-info {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.gm-crown {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.gm-panel-info h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  color: white;
+}
+
+.gm-panel-info p {
+  font-size: 0.85rem;
+  opacity: 0.88;
+  color: white;
+}
+
+.gm-register-btn {
+  background-color: white;
+  color: #b71c1c;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.gm-register-btn:hover {
+  background-color: #ffebee;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
+  .gm-panel-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0 1rem;
+  }
+
+  .gm-register-btn {
+    width: 100%;
+    text-align: center;
+  }
+
   .dashboard-content {
     padding: 1rem;
   }

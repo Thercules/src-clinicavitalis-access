@@ -38,7 +38,10 @@ export const authService = {
     return api.post('/auth/login', { email, password })
   },
   logout: () => api.post('/auth/logout'),
-  refreshToken: () => api.post('/auth/refresh')
+  refreshToken: () => api.post('/auth/refresh'),
+  registerWithAccessLevel: (registerData) => {
+    return api.post('/auth/register-with-access-level', registerData)
+  }
 }
 
 export const userService = {}

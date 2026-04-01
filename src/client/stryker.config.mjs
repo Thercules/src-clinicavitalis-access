@@ -11,7 +11,6 @@ export default {
     '!src/router/**',
     '!src/services/**',
     '!src/stores/counter.js',
-    '!src/views/**',
   ],
   checkers: ['typescript'],
   testRunner: 'vitest',
@@ -22,4 +21,7 @@ export default {
     break: 80,
   },
   tsconfigFile: './jsconfig.json',
+  disableSourceMapSupport: true,
+  ignoreStatic: true,
+  timeoutMS: 120000
 };

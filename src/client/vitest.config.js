@@ -7,9 +7,15 @@ export default mergeConfig(
   defineConfig({
     test: {
       environment: 'jsdom',
-      exclude: [...configDefaults.exclude, 'e2e/**'],
+      exclude: [...configDefaults.exclude, 'e2e/**', '.stryker-tmp/**'],
       root: fileURLToPath(new URL('./', import.meta.url)),
       globals: true,
+      pool: 'forks',
+      poolOptions: {
+        forks: {
+          singleThread: true
+        }
+      },
       coverage: {
         provider: 'v8',
         reporter: ['text', 'json', 'html', 'lcov'],
