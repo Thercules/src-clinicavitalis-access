@@ -11,7 +11,7 @@ echo "✅ Testes passaram! Prosseguindo com o commit..."
 
 echo "🧬 Gerando relatório de mutação com Stryker..."
 echo "Isso pode levar alguns minutos..."
-npm run test:mutation -- --ignoreStatic --disableSourceMapSupport --timeout 120000
+npm run test:mutation
 
 if [ $? -ne 0 ]; then
   echo "❌ Teste de mutação falhou!"
