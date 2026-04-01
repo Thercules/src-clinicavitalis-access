@@ -11,7 +11,6 @@ export default {
     '!src/router/**',
     '!src/services/**',
     '!src/stores/counter.js',
-    '!src/views/**',
   ],
   checkers: ['typescript'],
   testRunner: 'vitest',
