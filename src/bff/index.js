@@ -23,6 +23,7 @@ app.get('/health', (req, res) => {
 })
 
 app.use('/api/auth', authRoutes)
+
 app.use((req, res) => {
   res.status(404).json({ error: 'Rota não encontrada' })
 })
