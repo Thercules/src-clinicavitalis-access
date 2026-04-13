@@ -7,6 +7,7 @@ const config = require('./config/env')
 const errorHandler = require('./middleware/errorHandler')
 
 const authRoutes = require('./routes/auth')
+const medicosRoutes = require('./routes/medicos')
 
 const app = express()
 app.use(cors({
@@ -23,6 +24,7 @@ app.get('/health', (req, res) => {
 })
 
 app.use('/api/auth', authRoutes)
+app.use('/api/medicos', medicosRoutes)
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Rota não encontrada' })

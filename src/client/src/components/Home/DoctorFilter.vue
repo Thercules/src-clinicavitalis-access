@@ -1,6 +1,7 @@
 <script>
 import { useI18n } from 'vue-i18n'
 import { useRouter } from 'vue-router'
+import { medicosService } from '@/services/api'
 
 export default {
   name: "DoctorFilter",
@@ -11,41 +12,38 @@ export default {
   },
   data() {
     return {
-      selectedSpecialty: "Clínico Geral",
-      selectedLocation: "Olinda",
+      selectedSpecialty: "",
+      selectedLocation: "",
       searchQuery: "",
       showSpecialtyDropdown: false,
       selectedGender: "Todos",
       selectedDoctor: null,
-      
-      specialties: [
-        { id: 1, name: "Clínico Geral", count: 928 },
-        { id: 2, name: "Cirurgião", count: 687 },
-        { id: 3, name: "Cirurgião Geral", count: 443 },
-        { id: 4, name: "Cirurgião de Aparelho Digestivo", count: 363 },
-        { id: 5, name: "Gastroenterologista Clínico", count: 355 },
-        { id: 6, name: "Proctologista Clínico", count: 307 },
-        { id: 7, name: "Cirurgião Bariátrico", count: 189 },
-      ],
-      
-      doctors: [
-        { id: 1, name: "Adélia Maria Guedes Neta", specialty: "Clínico Geral", location: "Olinda", gender: "Feminino", image: "https://i.ibb.co/qxHwQ1L/doctor1.jpg" },
-        { id: 2, name: "Adimor Junior Diniz Pinheiro", specialty: "Clínico Geral", location: "Olinda", gender: "Masculino", image: "https://i.ibb.co/qxHwQ1L/doctor2.jpg" },
-        { id: 3, name: "Adrian Ferreira Sial", specialty: "Clínico Geral", location: "Olinda", gender: "Masculino", image: "https://i.ibb.co/qxHwQ1L/doctor3.jpg" },
-        { id: 4, name: "Adriano Silva Da Oliveira", specialty: "Clínico Geral", location: "Olinda", gender: "Masculino", image: "https://i.ibb.co/qxHwQ1L/doctor4.jpg" },
-        { id: 5, name: "Adriano Tomas Pataca", specialty: "Cardiologista Clínico", location: "Olinda", gender: "Masculino", image: "https://i.ibb.co/qxHwQ1L/doctor5.jpg" },
-        { id: 6, name: "Afonso Celso Pereira", specialty: "Cardiologista Clínico", location: "Olinda", gender: "Masculino", image: "https://i.ibb.co/qxHwQ1L/doctor6.jpg" },
-        { id: 7, name: "Alberto Eduardo Dias", specialty: "Clínico Geral", location: "Olinda", gender: "Masculino", image: "https://i.ibb.co/qxHwQ1L/doctor7.jpg" },
-        { id: 8, name: "Alcino Nicolau Soares", specialty: "Clínico Geral", location: "Olinda", gender: "Masculino", image: "https://i.ibb.co/qxHwQ1L/doctor8.jpg" },
-      ],
+      doctors: [],
+      loadingDoctors: false,
+      errorDoctors: null,
     };
   },
-  
+
   computed: {
+    specialties() {
+      const map = {}
+      this.doctors.forEach(doctor => {
+        doctor.especialidades.forEach(esp => {
+          if (!map[esp]) map[esp] = { id: esp, name: esp, count: 0 }
+          map[esp].count++
+        })
+      })
+      return Object.values(map)
+    },
+
     filteredDoctors() {
       return this.doctors.filter(doctor => {
-        const matchesSpecialty = doctor.specialty.toLowerCase().includes(this.selectedSpecialty.toLowerCase());
-        const matchesLocation = doctor.location.toLowerCase().includes(this.selectedLocation.toLowerCase());
+        const matchesSpecialty = !this.selectedSpecialty ||
+          doctor.especialidades.some(esp =>
+            esp.toLowerCase().includes(this.selectedSpecialty.toLowerCase())
+          );
+        const matchesLocation = !this.selectedLocation ||
+          doctor.location.toLowerCase().includes(this.selectedLocation.toLowerCase());
         const matchesGender = this.selectedGender === "Todos" || doctor.gender === this.selectedGender;
         return matchesSpecialty && matchesLocation && matchesGender;
       });
@@ -58,30 +56,63 @@ export default {
       );
     },
   },
-  
+
+  async created() {
+    await this.fetchDoctors()
+  },
+
   methods: {
+    async fetchDoctors() {
+      this.loadingDoctors = true
+      this.errorDoctors = null
+      try {
+        const response = await medicosService.listarMedicos()
+        const dados = response.data?.dados ?? []
+        this.doctors = dados.map(medico => ({
+          id: medico.id,
+          name: medico.nome_completo,
+          especialidades: medico.especialidades ?? [],
+          specialty: (medico.especialidades ?? [])[0] ?? '',
+          location: medico.localizacao ?? '',
+          gender: medico.genero ?? 'Todos',
+          image: medico.foto_url || 'https://i.ibb.co/qxHwQ1L/doctor1.jpg',
+          dias_atendimento: medico.dias_atendimento ?? [],
+          horario_inicio_manha: medico.horario_inicio_manha ?? null,
+          horario_fim_manha: medico.horario_fim_manha ?? null,
+          horario_inicio_tarde: medico.horario_inicio_tarde ?? null,
+          horario_fim_tarde: medico.horario_fim_tarde ?? null,
+          intervalo_consulta_minutos: medico.intervalo_consulta_minutos ?? 30,
+          data_limite_agendamento: medico.data_limite_agendamento ?? null,
+        }))
+      } catch (err) {
+        this.errorDoctors = err.message || 'Erro ao carregar médicos'
+      } finally {
+        this.loadingDoctors = false
+      }
+    },
+
     selectSpecialty(specialty) {
       this.selectedSpecialty = specialty.name;
       this.showSpecialtyDropdown = false;
       this.searchQuery = "";
     },
-    
+
     clearSpecialty() {
       this.selectedSpecialty = "";
     },
-    
+
     selectDoctor(doctor) {
       this.selectedDoctor = doctor;
     },
-    
+
     scheduleConsultation() {
       if (!this.selectedDoctor) {
         alert("Por favor, selecione um médico primeiro");
         return;
       }
-      
+
       localStorage.setItem('selectedDoctor', JSON.stringify(this.selectedDoctor));
-      
+
       this.router.push('/schedule-consultation');
     },
   },
@@ -106,7 +137,7 @@ export default {
                 <span class="doctor_filter__specialty-icon">⏱</span>
                 <div>
                   <div class="doctor_filter__specialty-name">{{ specialty.name }}</div>
-                  <div class="doctor_filter__specialty-count">{{ specialty.count }} {{ t('homeDoctorFilter.genderOptions.male') }}</div>
+                  <div class="doctor_filter__specialty-count">{{ specialty.count }} médicos</div>
                 </div>
               </div>
             </div>
@@ -224,23 +255,30 @@ export default {
           </div>
           
           <div class="doctor_filter__doctors-list">
-            <div 
-              v-for="doctor in filteredDoctors"
-              :key="doctor.id"
-              class="doctor_filter__doctor-card"
-              :class="{ 'doctor_filter__doctor-card--selected': selectedDoctor?.id === doctor.id }"
-              @click="selectDoctor(doctor)"
-            >
-              <img :src="doctor.image" :alt="doctor.name" class="doctor_filter__doctor-image" />
-              <div class="doctor_filter__doctor-info">
-                <div class="doctor_filter__doctor-name">{{ doctor.name }}</div>
-                <div class="doctor_filter__doctor-specialty">{{ doctor.specialty }}</div>
+            <div v-if="loadingDoctors" class="doctor_filter__no-results">
+              Carregando médicos...
+            </div>
+            <div v-else-if="errorDoctors" class="doctor_filter__no-results">
+              {{ errorDoctors }}
+            </div>
+            <template v-else>
+              <div 
+                v-for="doctor in filteredDoctors"
+                :key="doctor.id"
+                class="doctor_filter__doctor-card"
+                :class="{ 'doctor_filter__doctor-card--selected': selectedDoctor?.id === doctor.id }"
+                @click="selectDoctor(doctor)"
+              >
+                <img :src="doctor.image" :alt="doctor.name" class="doctor_filter__doctor-image" />
+                <div class="doctor_filter__doctor-info">
+                  <div class="doctor_filter__doctor-name">{{ doctor.name }}</div>
+                  <div class="doctor_filter__doctor-specialty">{{ doctor.specialty }}</div>
+                </div>
               </div>
-            </div>
-            
-            <div v-if="filteredDoctors.length === 0" class="doctor_filter__no-results">
-              {{ t('homeDoctorFilter.noResults') }}
-            </div>
+              <div v-if="filteredDoctors.length === 0" class="doctor_filter__no-results">
+                {{ t('homeDoctorFilter.noResults') }}
+              </div>
+            </template>
           </div>
 
           <button class="doctor_filter__consult-btn" @click="scheduleConsultation">{{ t('homeDoctorFilter.scheduleConsult') }}</button>

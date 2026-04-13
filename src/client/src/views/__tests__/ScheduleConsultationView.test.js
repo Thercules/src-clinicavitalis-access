@@ -173,7 +173,6 @@ describe('ScheduleConsultationView Component', () => {
       try {
         await wrapper.vm.fetchAvailableDates()
       } catch (e) {
-        // Expected
       }
 
       console.error = originalConsoleError
@@ -326,7 +325,7 @@ describe('ScheduleConsultationView Component', () => {
       wrapper.vm.navigateMonth(-1)
 
       expect(wrapper.vm.currentMonth.getFullYear()).toBe(2025)
-      expect(wrapper.vm.currentMonth.getMonth()).toBe(11) // December
+      expect(wrapper.vm.currentMonth.getMonth()).toBe(11)
     })
   })
 

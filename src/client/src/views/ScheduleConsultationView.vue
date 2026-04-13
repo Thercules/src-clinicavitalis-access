@@ -16,11 +16,6 @@ export default {
       lastAvailableDate: null,
       selectedDate: null,
       selectedTime: null,
-      availableTimes: [
-        "08:00", "08:30", "09:00", "09:30", "10:00", "10:30",
-        "11:00", "11:30", "14:00", "14:30", "15:00", "15:30",
-        "16:00", "16:30", "17:00", "17:30"
-      ],
       showConfirmationPopup: false,
       loading: false,
       error: "",
@@ -35,6 +30,34 @@ export default {
       ];
       return `${months[this.currentMonth.getMonth()]} de ${this.currentMonth.getFullYear()}`;
     },
+    availableTimes() {
+      const doctor = this.selectedDoctor
+      if (!doctor) return []
+      const interval = doctor.intervalo_consulta_minutos || 30
+      const times = []
+      const parseTime = (timeStr) => {
+        if (!timeStr) return null
+        const parts = timeStr.split(':').map(Number)
+        return parts[0] * 60 + parts[1]
+      }
+      const formatTime = (minutes) => {
+        const h = Math.floor(minutes / 60).toString().padStart(2, '0')
+        const m = (minutes % 60).toString().padStart(2, '0')
+        return `${h}:${m}`
+      }
+      const addSlots = (startStr, endStr) => {
+        const start = parseTime(startStr)
+        const end = parseTime(endStr)
+        if (start === null || end === null) return
+        for (let t = start; t < end; t += interval) {
+          times.push(formatTime(t))
+        }
+      }
+      addSlots(doctor.horario_inicio_manha, doctor.horario_fim_manha)
+      addSlots(doctor.horario_inicio_tarde, doctor.horario_fim_tarde)
+      return times
+    },
+
     calendarDays() {
       const year = this.currentMonth.getFullYear();
       const month = this.currentMonth.getMonth();
@@ -77,22 +100,33 @@ export default {
     
     async fetchAvailableDates() {
       try {
-        this.loading = true;
+        this.loading = true
+        const doctor = this.selectedDoctor
+        if (!doctor?.dias_atendimento?.length) return
 
-        const mockAvailableDates = [
-          '2026-03-10',
-          '2026-03-11',
-          '2026-03-12',
-          '2026-03-13',
-          '2026-03-14'
-        ];
-        
-        this.availableDates = mockAvailableDates;
-        this.lastAvailableDate = '2026-03-14';
+        const today = new Date()
+        today.setHours(0, 0, 0, 0)
+
+        const limitDate = doctor.data_limite_agendamento
+          ? new Date(doctor.data_limite_agendamento + 'T00:00:00')
+          : new Date(today.getFullYear(), today.getMonth() + 3, 0)
+
+        const dates = []
+        const cursor = new Date(today)
+
+        while (cursor <= limitDate) {
+          if (doctor.dias_atendimento.includes(cursor.getDay())) {
+            dates.push(cursor.toISOString().split('T')[0])
+          }
+          cursor.setDate(cursor.getDate() + 1)
+        }
+
+        this.availableDates = dates
+        this.lastAvailableDate = doctor.data_limite_agendamento ?? null
       } catch (err) {
-        this.error = "Erro ao carregar datas disponíveis";
+        this.error = 'Erro ao carregar datas disponíveis'
       } finally {
-        this.loading = false;
+        this.loading = false
       }
     },
     

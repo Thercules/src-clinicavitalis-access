@@ -46,4 +46,8 @@ export const authService = {
 
 export const userService = {}
 
+export const medicosService = {
+  listarMedicos: () => api.get('/medicos')
+}
+
 export default api
