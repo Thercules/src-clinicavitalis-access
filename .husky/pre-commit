@@ -1,9 +1,20 @@
+echo "🧪 Executando testes unitários do BFF..."
+cd src/bff
+npm run test:unit
+
+if [ $? -ne 0 ]; then
+  echo "❌ Testes do BFF falharam! Commit abortado."
+  exit 1
+fi
+
+cd ../..
+
 echo "🧪 Executando testes unitários do cliente..."
 cd src/client
 npm run test:unit
 
 if [ $? -ne 0 ]; then
-  echo "❌ Testes falharam! Commit abortado."
+  echo "❌ Testes do cliente falharam! Commit abortado."
   exit 1
 fi
 

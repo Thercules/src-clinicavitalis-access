@@ -1,3 +1,5 @@
+const config = require('../config/env')
+
 const errorHandler = (err, req, res, next) => {
   console.error('Error:', {
     message: err.message,
@@ -14,7 +16,7 @@ const errorHandler = (err, req, res, next) => {
     error: {
       message,
       status,
-      ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+      ...(config.NODE_ENV === 'development' && { stack: err.stack })
     }
   })
 }
